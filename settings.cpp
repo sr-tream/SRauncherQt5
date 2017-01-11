@@ -6,12 +6,14 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui(new Ui::CSettings)
 {
     ui->setupUi(this);
-    this->setFixedSize(162, 82);
+    this->setFixedSize(162, 110);
     this->servers = servers;
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
     ui->cbAsiLoader->setChecked(regset->value("asi_loader").toBool());
     ui->cbWinMode->setChecked(regset->value("win_mode").toBool());
+    ui->comboBox->setEnabled(ui->cbWinMode->isChecked());
+    ui->comboBox->setCurrentIndex(regset->value("win_size").toInt());
 }
 
 CSettings::~CSettings()
@@ -39,6 +41,7 @@ void CSettings::on_cbAsiLoader_toggled(bool checked)
 void CSettings::on_cbWinMode_toggled(bool checked)
 {
     regset->setValue("win_mode", checked);
+    ui->comboBox->setEnabled(checked);
 }
 
 void CSettings::on_btnImport_clicked()
@@ -47,4 +50,14 @@ void CSettings::on_btnImport_clicked()
     QMessageBox msgBox;
     msgBox.setText("Servers has imported.");
     msgBox.exec();
+}
+
+QString CSettings::getSize()
+{
+    return ui->comboBox->currentText();
+}
+
+void CSettings::on_comboBox_currentIndexChanged(int index)
+{
+    regset->setValue("win_size", index);
 }

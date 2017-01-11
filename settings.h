@@ -19,6 +19,8 @@ public:
     explicit CSettings(CSampServers* servers, QWidget *parent = 0);
     ~CSettings();
 
+    QString getSize();
+
 protected:
     void changeEvent(QEvent *e);
 
@@ -28,6 +30,8 @@ private slots:
     void on_cbWinMode_toggled(bool checked);
 
     void on_btnImport_clicked();
+
+    void on_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::CSettings *ui;

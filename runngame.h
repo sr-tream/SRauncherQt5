@@ -3,6 +3,9 @@
 
 #include <QString>
 #include <QList>
+#include <QRegExp>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include <windows.h>
 #include <tlhelp32.h>
@@ -24,12 +27,14 @@ public:
     void setGta(QString gta_sa);
     void addLib(QString lib);
     void setWindowMode(bool mode);
+    void setWindowSize(QString size);
 
     QString domain2ip(QString domain);
 
 private:
     QString gta_sa;
     QList<QString> libs;
+    QString size = "640*480";
     bool _winMode = false;
 
     void initialise();

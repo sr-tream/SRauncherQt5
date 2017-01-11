@@ -43,6 +43,19 @@ void CRunGame::Connect(QString nick, QString ip, ushort port)
           }
         ResumeThread(pi.hThread);
       }
+
+      if (_winMode){
+          while (FindWindowA(NULL, "GTA: San Andreas") == 0);
+
+          QRegExp rx(R"((\d*)\*(\d*))");
+          if (rx.indexIn(size) != -1){
+            QDesktopWidget *d = QApplication::desktop();
+            MoveWindow(FindWindowA(NULL, "GTA: San Andreas"),
+                       (d->width() - rx.cap(1).toShort()) / 2,
+                       (d->height() - rx.cap(2).toShort()) / 2,
+                       rx.cap(1).toShort(), rx.cap(2).toShort(), true);
+          }
+      }
     } else MessageBoxA(NULL, "Failed to Create Process", "Error", MB_ICONERROR);
 }
 
@@ -132,4 +145,9 @@ BOOL CRunGame::memcpyEx(DWORD pId, void *addr, char *buf, uint size)
 void CRunGame::setWindowMode(bool mode)
 {
     _winMode = mode;
+}
+
+void CRunGame::setWindowSize(QString size)
+{
+    this->size = size;
 }

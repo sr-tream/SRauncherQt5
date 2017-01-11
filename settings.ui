@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>162</width>
-    <height>82</height>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,7 +43,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>50</y>
+     <y>80</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -51,6 +51,59 @@
    <property name="text">
     <string>Import servers</string>
    </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>141</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>640*480</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>800*600</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1024*768</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1280*1024</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1280*720</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1366*768</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1400*850</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1600*900</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>
