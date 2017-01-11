@@ -92,19 +92,9 @@
       <widget class="QLineEdit" name="edtNick"/>
      </item>
      <item>
-      <widget class="QPushButton" name="btnImport">
+      <widget class="QPushButton" name="btnSettings">
        <property name="text">
-        <string>Import</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="cbLoader">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>Custom asi loader</string>
+        <string>Settings</string>
        </property>
       </widget>
      </item>
@@ -287,7 +277,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>300</x>

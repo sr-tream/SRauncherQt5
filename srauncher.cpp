@@ -14,16 +14,15 @@ SRauncher::SRauncher(QWidget *parent) :
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
     ui->edtNick->setText(regset->value("PlayerName").toString());
-    ui->cbLoader->setChecked(regset->value("asi_loader").toBool());
     servers = new CSampServers(ui->edtNick->text(), ui->srvList);
     game = new CRunGame();
     inject = new SelectLibs(this);
+    sets = new CSettings(servers, this);
     udp = nullptr;
 }
 
 SRauncher::~SRauncher()
 {
-    regset->setValue("asi_loader", ui->cbLoader->isChecked());
     QList<QListWidgetItem *> lst = ui->srvList->selectedItems();
     g_SrvList[lst.front()->text()].gta_sa = ui->edtGta->text();
     g_SrvList[lst.front()->text()].samp = ui->edtSamp->text();
@@ -167,7 +166,7 @@ void SRauncher::on_btnConnect_clicked()
     game->setGta(ui->edtGta->text());
     game->addLib(ui->edtSamp->text());
 
-    if (ui->cbLoader->isChecked()){
+    if (regset->value("asi_loader").toBool()){
         QDir dir;
         dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
         dir.setSorting(QDir::Name);
@@ -179,6 +178,7 @@ void SRauncher::on_btnConnect_clicked()
 
         }
     }
+    game->setWindowMode(regset->value("win_mode").toBool());
 
     QList<QString> addLibs = inject->enabledLibs();
     foreach (auto lib, addLibs) {
@@ -225,15 +225,12 @@ void SRauncher::on_srvList_currentItemChanged(QListWidgetItem *current, QListWid
     ui->edtComment->setText(g_SrvList[current->text()].comment);
 }
 
-void SRauncher::on_btnImport_clicked()
-{
-    servers->Import();
-    QMessageBox msgBox;
-    msgBox.setText("Servers has imported.");
-    msgBox.exec();
-}
-
 void SRauncher::on_btnInject_clicked()
 {
     inject->show();
+}
+
+void SRauncher::on_btnSettings_clicked()
+{
+    sets->show();
 }

@@ -26,6 +26,14 @@ void CRunGame::Connect(QString nick, QString ip, ushort port)
     {
       if(pi.hProcess!=NULL)
       {
+          if (_winMode){
+              memsetEx(pi.dwProcessId, (void*)0x74595E, 0x90, 34);
+              memsetEx(pi.dwProcessId, (void*)0x746225, 0x90, 2);
+              memcpyEx(pi.dwProcessId, (void*)0x746236,
+                       (char*)"\x90\x90\x33\xC0\xA3\xF4\x20\xC9\x00\xA3\x20\x62\x8D\x00\x90\x90\x40\x85\xC0",
+                       19);
+              memsetEx(pi.dwProcessId, (void*)0x748AB4, 0x90, 2);
+          }
           foreach (auto lib, libs) {
               if(!Inject(pi.dwProcessId, (char*)lib.toStdString().c_str()))
               {
@@ -86,4 +94,42 @@ BOOL CRunGame::Inject( DWORD pId, LPSTR dllName )
         return TRUE;
     }
     return FALSE;
+}
+
+BOOL CRunGame::memsetEx(DWORD pId, void *addr, char c, uint size)
+{
+    HANDLE h = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pId );
+    DWORD dwProtect;
+    if ( h )
+    {
+        VirtualProtectEx(h, addr, size, PAGE_EXECUTE_READWRITE, &dwProtect);
+        for(int i = 0; i < size; ++i)
+            WriteProcessMemory( h, (void*)((uint)addr + i), &c, 1, NULL );
+        VirtualProtectEx(h, addr, size, dwProtect, NULL);
+        CloseHandle( h );
+        return TRUE;
+    }
+    return FALSE;
+}
+
+BOOL CRunGame::memcpyEx(DWORD pId, void *addr, char *buf, uint size)
+{
+    HANDLE h = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pId );
+    DWORD dwProtect;
+    if ( h )
+    {
+        VirtualProtectEx(h, addr, size, PAGE_EXECUTE_READWRITE, &dwProtect);
+        for(int i = 0; i < size; ++i)
+            WriteProcessMemory( h, (void*)((uint)addr + i), &(buf[i]), 1, NULL );
+        //WriteProcessMemory( h, addr, buf, size, NULL );
+        VirtualProtectEx(h, addr, size, dwProtect, NULL);
+        CloseHandle( h );
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void CRunGame::setWindowMode(bool mode)
+{
+    _winMode = mode;
 }

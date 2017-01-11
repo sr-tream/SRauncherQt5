@@ -23,16 +23,20 @@ public:
 
     void setGta(QString gta_sa);
     void addLib(QString lib);
+    void setWindowMode(bool mode);
 
     QString domain2ip(QString domain);
 
 private:
     QString gta_sa;
     QList<QString> libs;
+    bool _winMode = false;
 
     void initialise();
     void uninitialise();
     BOOL Inject( DWORD pId, LPSTR dllName );
+    BOOL memsetEx(DWORD pId, void *addr, char c, uint size);
+    BOOL memcpyEx(DWORD pId, void *addr, char* buf, uint size);
 };
 
 #endif // RUNNGAME_H

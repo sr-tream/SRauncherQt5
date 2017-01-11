@@ -20,6 +20,7 @@
 #include "selectlibs.h"
 #include "runngame.h"
 #include "udpconnect.h"
+#include "settings.h"
 
 namespace Ui {
 class SRauncher;
@@ -52,9 +53,9 @@ private slots:
 
     void on_srvList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
-    void on_btnImport_clicked();
-
     void on_btnInject_clicked();
+
+    void on_btnSettings_clicked();
 
 private:
     Ui::SRauncher *ui;
@@ -64,6 +65,7 @@ private:
     CRunGame *game;
     SelectLibs* inject;
     CUdpConnect* udp;
+    CSettings *sets;
     QRegExp rx;
     bool srvNeedUpd = false;
 };
