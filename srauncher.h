@@ -19,6 +19,7 @@
 #include "serverrename.h"
 #include "selectlibs.h"
 #include "runngame.h"
+#include "udpconnect.h"
 
 namespace Ui {
 class SRauncher;
@@ -62,6 +63,7 @@ private:
     QSettings *regset;
     CRunGame *game;
     SelectLibs* inject;
+    CUdpConnect* udp;
     QRegExp rx;
     bool srvNeedUpd = false;
 };

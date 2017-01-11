@@ -1,22 +1,26 @@
 #include "runngame.h"
 
-void CRunGame::Connect(QString nick, QString ip, ushort port)
+QString CRunGame::domain2ip(QString domain)
 {
     char newIp[64];
     initialise();
-    struct hostent *he = gethostbyname( ip.toStdString().c_str() );
+    struct hostent *he = gethostbyname( domain.toStdString().c_str() );
     if ( he != NULL ){
         strcpy( newIp, inet_ntoa( *((struct in_addr *) he->h_addr_list[0]) ) );
     }
     uninitialise();
+    return newIp;
+}
 
+void CRunGame::Connect(QString nick, QString ip, ushort port)
+{
     STARTUPINFOA cif;
     ZeroMemory( &cif, sizeof( STARTUPINFOA ) );
     PROCESS_INFORMATION pi;
     char param[128];
     sprintf( param, "-c -n %s -h %s -p %d",
              nick.toStdString().c_str(),
-             newIp,
+             domain2ip(ip).toStdString().c_str(),
              port );
     if(CreateProcessA("gta_sa.exe", param, NULL,NULL, FALSE, DETACHED_PROCESS | CREATE_SUSPENDED, NULL, NULL, &cif, &pi))
     {

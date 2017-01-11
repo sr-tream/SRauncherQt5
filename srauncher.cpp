@@ -18,6 +18,7 @@ SRauncher::SRauncher(QWidget *parent) :
     servers = new CSampServers(ui->edtNick->text(), ui->srvList);
     game = new CRunGame();
     inject = new SelectLibs(this);
+    udp = nullptr;
 }
 
 SRauncher::~SRauncher()
@@ -29,9 +30,6 @@ SRauncher::~SRauncher()
     g_SrvList[lst.front()->text()].nick = ui->edtNick->text();
     g_SrvList[lst.front()->text()].comment = ui->edtComment->toPlainText();
     delete servers;
-    delete game;
-    delete regset;
-    delete manager;
     delete ui;
 }
 
@@ -144,6 +142,13 @@ void SRauncher::on_srvList_itemClicked(QListWidgetItem *item)
     ui->btnRename->setEnabled(true);
 
     stServer srv = g_SrvList[item->text()];
+    if (udp != nullptr)
+        delete udp;
+    udp = new CUdpConnect(srv.ip, srv.port, this);
+    for(int i = 0; i < 3; ++i){
+        udp->requestInfo();
+        udp->requestRule();
+    }
     QUrl url("http://samp.prime-hack.net/?ip=" + srv.ip +
              "&port=" + QString::number(srv.port) + "&info=bingui");
 

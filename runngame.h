@@ -24,6 +24,8 @@ public:
     void setGta(QString gta_sa);
     void addLib(QString lib);
 
+    QString domain2ip(QString domain);
+
 private:
     QString gta_sa;
     QList<QString> libs;
