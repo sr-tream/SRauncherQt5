@@ -98,6 +98,16 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QCheckBox" name="cbLoader">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Custom asi loader</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QListWidget" name="srvList">
@@ -136,63 +146,18 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>90</y>
-      <width>141</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <item>
-      <widget class="QPushButton" name="btnRemove">
-       <property name="text">
-        <string>remove</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnRename">
-       <property name="text">
-        <string>rename</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="btnAddSrv">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>300</x>
       <y>60</y>
-      <width>61</width>
+      <width>141</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string>Add server</string>
     </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>180</y>
-      <width>141</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QPushButton" name="btnConnect">
-       <property name="text">
-        <string>Connect</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </widget>
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
@@ -229,32 +194,6 @@
       <widget class="QLineEdit" name="edtSamp">
        <property name="text">
         <string>samp.dll</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>60</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="txtPort">
-       <property name="text">
-        <string>Port:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="edtPort">
-       <property name="text">
-        <string>7777</string>
        </property>
       </widget>
      </item>
@@ -303,40 +242,84 @@
      <item>
       <widget class="QLineEdit" name="edtIp">
        <property name="text">
-        <string>127.0.0.1</string>
+        <string>127.0.0.1:7777</string>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QCheckBox" name="cbLoader">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QPushButton" name="btnRemove">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>210</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Custom asi loader</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnInject">
-    <property name="geometry">
-     <rect>
-      <x>344</x>
-      <y>230</y>
-      <width>91</width>
+      <x>300</x>
+      <y>90</y>
+      <width>67</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Additional inject</string>
+     <string>remove</string>
     </property>
+   </widget>
+   <widget class="QPushButton" name="btnRename">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>90</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rename</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>175</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>190</y>
+      <width>141</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="btnConnect">
+         <property name="text">
+          <string>Connect</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="btnInject">
+         <property name="text">
+          <string>Additional inject</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -358,5 +341,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>srvList</sender>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <receiver>btnRename</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>121</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>398</x>
+     <y>121</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

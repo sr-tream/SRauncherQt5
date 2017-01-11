@@ -7,7 +7,7 @@ SRauncher::SRauncher(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setFixedSize(450, 380);
-    ui->edtPort->setValidator(new QIntValidator(0, 65535, this));
+    rx.setPattern(R"((.*):(\d{1,5}))");
     ui->btnRemove->setEnabled(false);
     ui->btnRename->setEnabled(false);
     manager = new QNetworkAccessManager(this);
@@ -70,8 +70,13 @@ void SRauncher::AddToSrvList()
               _next = false;
       if (_next){
 
-          srv.ip = ui->edtIp->text();
-          srv.port = ui->edtPort->text().toShort();
+          if (rx.indexIn(ui->edtIp->text()) != -1){
+              srv.ip = rx.cap(1);
+              srv.port = rx.cap(2).toShort();
+          } else {
+              srv.ip = ui->edtIp->text();
+              srv.port = 7777;
+          }
           srv.gta_sa = "gta_sa.exe";
           srv.samp = "samp.dll";
           srv.nick = regset->value("PlayerName").toString();
@@ -79,9 +84,7 @@ void SRauncher::AddToSrvList()
           g_SrvList[srv.name] = srv;
       }
       ui->edtIp->setText("");
-      ui->edtPort->setText("");
       ui->edtIp->setEnabled(true);
-      ui->edtPort->setEnabled(true);
       ui->btnAddSrv->setEnabled(true);
     }
 
@@ -111,25 +114,28 @@ void SRauncher::UpdateSrvInfo()
 
 void SRauncher::on_btnAddSrv_clicked()
 {
-    if (ui->edtPort->text().isEmpty())
-        ui->edtPort->setText("7777");
-    ui->edtIp->setEnabled(false);
-    ui->edtPort->setEnabled(false);
-    ui->btnAddSrv->setEnabled(false);
-    // берем адрес введенный в текстовое поле
-    QUrl url("http://samp.prime-hack.net/?ip=" + ui->edtIp->text() +
-             "&port=" + ui->edtPort->text() + "&info=name");
+    if (rx.indexIn(ui->edtIp->text()) != -1){
+        ui->edtIp->setEnabled(false);
+        ui->btnAddSrv->setEnabled(false);
+        // берем адрес введенный в текстовое поле
+        QUrl url("http://samp.prime-hack.net/?ip=" + rx.cap(1) +
+                 "&port=" + rx.cap(2) + "&info=name");
 
-    // создаем объект для запроса
-    QNetworkRequest request(url);
+        // создаем объект для запроса
+        QNetworkRequest request(url);
 
-    // Выполняем запрос, получаем указатель на объект
-    // ответственный за ответ
-    QNetworkReply* reply=  manager->get(request);
+        // Выполняем запрос, получаем указатель на объект
+        // ответственный за ответ
+        QNetworkReply* reply=  manager->get(request);
 
-    // Подписываемся на сигнал о готовности загрузки
-    connect( reply, SIGNAL(finished()),
-             this, SLOT(AddToSrvList()) );
+        // Подписываемся на сигнал о готовности загрузки
+        connect( reply, SIGNAL(finished()),
+                 this, SLOT(AddToSrvList()) );
+    } else {
+        QMessageBox msgBox;
+        msgBox.setText("Bad IP:Port");
+        msgBox.exec();
+    }
 }
 
 void SRauncher::on_srvList_itemClicked(QListWidgetItem *item)
@@ -141,8 +147,7 @@ void SRauncher::on_srvList_itemClicked(QListWidgetItem *item)
     QUrl url("http://samp.prime-hack.net/?ip=" + srv.ip +
              "&port=" + QString::number(srv.port) + "&info=bingui");
 
-    ui->edtIp->setText(srv.ip);
-    ui->edtPort->setText(QString::number(srv.port));
+    ui->edtIp->setText(srv.ip + ":" + QString::number(srv.port));
 
     QNetworkRequest request(url);
     QNetworkReply* reply=  manager->get(request);
@@ -175,9 +180,15 @@ void SRauncher::on_btnConnect_clicked()
         game->addLib(lib);
     }
 
-    game->Connect(ui->edtNick->text(),
-                  ui->edtIp->text(),
-                  ui->edtPort->text().toUInt());
+    if (rx.indexIn(ui->edtIp->text()) != -1){
+        game->Connect(ui->edtNick->text(),
+                      rx.cap(1),
+                      rx.cap(2).toUInt());
+    } else {
+        QMessageBox msgBox;
+        msgBox.setText("Bad IP:Port");
+        msgBox.exec();
+    }
 }
 
 void SRauncher::on_btnRename_clicked()

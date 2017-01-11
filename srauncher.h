@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QDir>
+#include <QRegExp>
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -61,6 +62,7 @@ private:
     QSettings *regset;
     CRunGame *game;
     SelectLibs* inject;
+    QRegExp rx;
     bool srvNeedUpd = false;
 };
 
