@@ -27,13 +27,16 @@ SOURCES += main.cpp\
         srauncher.cpp \
     sampservers.cpp \
     serverrename.cpp \
-    runngame.cpp
+    runngame.cpp \
+    selectlibs.cpp
 
 HEADERS  += srauncher.h \
     sampservers.h \
     serverrename.h \
-    runngame.h
+    runngame.h \
+    selectlibs.h
 
 FORMS    += srauncher.ui \
-    serverrename.ui
+    serverrename.ui \
+    selectlibs.ui
 

@@ -6,7 +6,7 @@ SRauncher::SRauncher(QWidget *parent) :
     ui(new Ui::SRauncher)
 {
     ui->setupUi(this);
-    this->setFixedSize(450, 350);
+    this->setFixedSize(450, 380);
     ui->edtPort->setValidator(new QIntValidator(0, 65535, this));
     ui->btnRemove->setEnabled(false);
     ui->btnRename->setEnabled(false);
@@ -17,6 +17,7 @@ SRauncher::SRauncher(QWidget *parent) :
     ui->cbLoader->setChecked(regset->value("asi_loader").toBool());
     servers = new CSampServers(ui->edtNick->text(), ui->srvList);
     game = new CRunGame();
+    inject = new SelectLibs(this);
 }
 
 SRauncher::~SRauncher()
@@ -156,7 +157,6 @@ void SRauncher::on_btnConnect_clicked()
     game->setGta(ui->edtGta->text());
     game->addLib(ui->edtSamp->text());
 
-    // TODO: asi loader
     if (ui->cbLoader->isChecked()){
         QDir dir;
         dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
@@ -168,6 +168,11 @@ void SRauncher::on_btnConnect_clicked()
                 game->addLib(fileInfo.fileName());
 
         }
+    }
+
+    QList<QString> addLibs = inject->enabledLibs();
+    foreach (auto lib, addLibs) {
+        game->addLib(lib);
     }
 
     game->Connect(ui->edtNick->text(),
@@ -210,4 +215,9 @@ void SRauncher::on_btnImport_clicked()
     QMessageBox msgBox;
     msgBox.setText("Servers has imported.");
     msgBox.exec();
+}
+
+void SRauncher::on_btnInject_clicked()
+{
+    inject->show();
 }

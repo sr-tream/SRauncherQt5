@@ -16,6 +16,7 @@
 
 #include "sampservers.h"
 #include "serverrename.h"
+#include "selectlibs.h"
 #include "runngame.h"
 
 namespace Ui {
@@ -51,12 +52,15 @@ private slots:
 
     void on_btnImport_clicked();
 
+    void on_btnInject_clicked();
+
 private:
     Ui::SRauncher *ui;
     QNetworkAccessManager *manager;
     CSampServers *servers;
     QSettings *regset;
     CRunGame *game;
+    SelectLibs* inject;
     bool srvNeedUpd = false;
 };
 
