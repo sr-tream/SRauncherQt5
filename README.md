@@ -18,3 +18,8 @@ Thread on forum (RUS): https://prime-hack.net/threads/srauncher.2249/
 * It is possible to list multiple identical servers under different names (for easier use on different accounts)
 * It has the ability to selectively loading libraries
 * Can run the game in windowed mode
+
+
+
+
+### Author: SR_team ©prime-hack.net
