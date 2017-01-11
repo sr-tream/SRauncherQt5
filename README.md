@@ -1,4 +1,4 @@
-# SRauncherQt5
+# SRauncher
 The custom launcher for SA:MP
 
 For building need Qt5.7 witch MSCV2015 (only x32)
