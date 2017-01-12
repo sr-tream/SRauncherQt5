@@ -66,6 +66,7 @@ private:
     SelectLibs* inject;
     CUdpConnect* udp;
     CSettings *sets;
+    ServerRename* rename;
     QRegExp rx;
     bool srvNeedUpd = false;
 };

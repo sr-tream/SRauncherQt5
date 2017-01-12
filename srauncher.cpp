@@ -18,6 +18,7 @@ SRauncher::SRauncher(QWidget *parent) :
     game = new CRunGame();
     inject = new SelectLibs(this);
     sets = new CSettings(servers, this);
+    rename = new ServerRename(this);
     udp = nullptr;
 }
 
@@ -200,8 +201,8 @@ void SRauncher::on_btnConnect_clicked()
 void SRauncher::on_btnRename_clicked()
 {
     QList<QListWidgetItem *> lst = ui->srvList->selectedItems();
-    ServerRename* dlg = new ServerRename(lst.front(), this);
-    dlg->show();
+    rename->setServer(lst.front());
+    rename->show();
 }
 
 void SRauncher::on_btnRemove_clicked()

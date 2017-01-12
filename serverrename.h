@@ -15,8 +15,10 @@ class ServerRename : public QDialog
     Q_OBJECT
 
 public:
-    explicit ServerRename(QListWidgetItem *srv, QWidget *parent = 0);
+    explicit ServerRename(QWidget *parent = 0);
     ~ServerRename();
+
+    void setServer(QListWidgetItem *srv);
 
 protected:
     void changeEvent(QEvent *e);
