@@ -42,6 +42,7 @@ private:
     BOOL Inject( DWORD pId, LPSTR dllName );
     BOOL memsetEx(DWORD pId, void *addr, char c, uint size);
     BOOL memcpyEx(DWORD pId, void *addr, char* buf, uint size);
+    BOOL WriteIntEx(DWORD pId, void *addr, int v);
 };
 
 #endif // RUNNGAME_H

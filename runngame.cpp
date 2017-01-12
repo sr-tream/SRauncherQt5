@@ -33,6 +33,18 @@ void CRunGame::Connect(QString nick, QString ip, ushort port)
                        (char*)"\x90\x90\x33\xC0\xA3\xF4\x20\xC9\x00\xA3\x20\x62\x8D\x00\x90\x90\x40\x85\xC0",
                        19);
               memsetEx(pi.dwProcessId, (void*)0x748AB4, 0x90, 2);
+
+              QRegExp rx(R"((\d*)\*(\d*))");
+              if (rx.indexIn(size) != -1){
+                  QDesktopWidget *d = QApplication::desktop();
+                  WriteIntEx(pi.dwProcessId, (void*)0x7455C8,
+                             (d->width() - rx.cap(1).toShort()) / 2);
+                  WriteIntEx(pi.dwProcessId, (void*)0x7455C3,
+                             (d->height() - rx.cap(2).toShort()) / 2);
+                  memsetEx(pi.dwProcessId, (void*)0x61960C, 0x90, 0x14);
+                  WriteIntEx(pi.dwProcessId, (void*)0xC17044, rx.cap(1).toInt());
+                  WriteIntEx(pi.dwProcessId, (void*)0xC17048, rx.cap(2).toInt());
+              }
           }
           foreach (auto lib, libs) {
               if(!Inject(pi.dwProcessId, (char*)lib.toStdString().c_str()))
@@ -42,19 +54,6 @@ void CRunGame::Connect(QString nick, QString ip, ushort port)
               }
           }
         ResumeThread(pi.hThread);
-      }
-
-      if (_winMode){
-          while (FindWindowA(NULL, "GTA: San Andreas") == 0);
-
-          QRegExp rx(R"((\d*)\*(\d*))");
-          if (rx.indexIn(size) != -1){
-            QDesktopWidget *d = QApplication::desktop();
-            MoveWindow(FindWindowA(NULL, "GTA: San Andreas"),
-                       (d->width() - rx.cap(1).toShort()) / 2,
-                       (d->height() - rx.cap(2).toShort()) / 2,
-                       rx.cap(1).toShort(), rx.cap(2).toShort(), true);
-          }
       }
     } else MessageBoxA(NULL, "Failed to Create Process", "Error", MB_ICONERROR);
 }
@@ -136,6 +135,21 @@ BOOL CRunGame::memcpyEx(DWORD pId, void *addr, char *buf, uint size)
             WriteProcessMemory( h, (void*)((uint)addr + i), &(buf[i]), 1, NULL );
         //WriteProcessMemory( h, addr, buf, size, NULL );
         VirtualProtectEx(h, addr, size, dwProtect, NULL);
+        CloseHandle( h );
+        return TRUE;
+    }
+    return FALSE;
+}
+
+BOOL CRunGame::WriteIntEx(DWORD pId, void *addr, int v)
+{
+    HANDLE h = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pId );
+    DWORD dwProtect;
+    if ( h )
+    {
+        VirtualProtectEx(h, addr, 4, PAGE_EXECUTE_READWRITE, &dwProtect);
+        WriteProcessMemory( h, addr, &v, 4, NULL );
+        VirtualProtectEx(h, addr, 4, dwProtect, NULL);
         CloseHandle( h );
         return TRUE;
     }
