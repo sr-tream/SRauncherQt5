@@ -49,7 +49,7 @@ void CUdpConnect::readPendingDatagrams()
         QString name = read<QString>(buffer, offset);
         stServer srv = g_SrvList[item->text()];
         if (item->text() == QString(srv.ip + ":" + QString::number(srv.port))
-            && srv.name.isEmpty()){
+            && srv.name == QString(srv.ip + ":" + QString::number(srv.port))){
 
             foreach (auto it, g_SrvList)
                 if (it.name == name)

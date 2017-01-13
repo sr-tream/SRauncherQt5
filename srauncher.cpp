@@ -52,15 +52,14 @@ void SRauncher::on_btnAddSrv_clicked()
 {
     if (rx.indexIn(ui->edtIp->text()) != -1){
         stServer srv;
-        srv.name = "";
+        srv.name = rx.cap(1) + ":" + rx.cap(2);
         srv.gta_sa = "gta_sa.exe";
         srv.samp = "samp.dll";
         srv.nick = regset->value("PlayerName").toString();
         srv.ip = rx.cap(1);
         srv.port = rx.cap(2).toShort();
-        QString name = rx.cap(1) + ":" + rx.cap(2);
-        g_SrvList[name] = srv;
-        QListWidgetItem *item = new QListWidgetItem(name, ui->srvList);
+        g_SrvList[srv.name] = srv;
+        QListWidgetItem *item = new QListWidgetItem(srv.name, ui->srvList);
         ui->srvList->addItem(item);
 
         if (udp != nullptr)
@@ -79,23 +78,7 @@ void SRauncher::on_srvList_itemClicked(QListWidgetItem *item)
 {
     ui->btnRemove->setEnabled(true);
     ui->btnRename->setEnabled(true);
-
     stServer srv = g_SrvList[item->text()];
-    if (udp == nullptr){
-        udp = new CUdpConnect(item, regset->value("client_port").toUInt(), this);
-        udp->setPing(ui->tsPing);
-        udp->setPlayers(ui->tsPlayers);
-        udp->setTime(ui->tsTime);
-        udp->setWeather(ui->tsWeather);
-        udp->setMap(ui->tsMap);
-        udp->setMode(ui->tsMode);
-        udp->setUrl(ui->tsUrl);
-        udp->setLng(ui->tsLng);
-    }
-    udp->requestPing(false);
-    udp->requestInfo(false);
-    udp->requestRule(false);
-
     ui->edtIp->setText(srv.ip + ":" + QString::number(srv.port));
 }
 
@@ -163,6 +146,8 @@ void SRauncher::on_btnRemove_clicked()
 
 void SRauncher::on_srvList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
+    ui->btnRemove->setEnabled(true);
+    ui->btnRename->setEnabled(true);
     if (previous != nullptr){
         g_SrvList[previous->text()].gta_sa = ui->edtGta->text();
         g_SrvList[previous->text()].samp = ui->edtSamp->text();
@@ -188,6 +173,9 @@ void SRauncher::on_srvList_currentItemChanged(QListWidgetItem *current, QListWid
     udp->requestPing();
     udp->requestInfo();
     udp->requestRule();
+
+    stServer srv = g_SrvList[current->text()];
+    ui->edtIp->setText(srv.ip + ":" + QString::number(srv.port));
 }
 
 void SRauncher::on_btnInject_clicked()
