@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSettings>
 #include <QMessageBox>
+#include <QCloseEvent>
 
 #include "sampservers.h"
 
@@ -23,6 +24,7 @@ public:
 
 protected:
     void changeEvent(QEvent *e);
+    void closeEvent(QCloseEvent * e);
 
 private slots:
     void on_cbAsiLoader_toggled(bool checked);
@@ -32,6 +34,8 @@ private slots:
     void on_btnImport_clicked();
 
     void on_comboBox_currentIndexChanged(int index);
+
+    void on_dial_valueChanged(int value);
 
 private:
     Ui::CSettings *ui;

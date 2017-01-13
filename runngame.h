@@ -29,7 +29,9 @@ public:
     void setWindowMode(bool mode);
     void setWindowSize(QString size);
 
-    QString domain2ip(QString domain);
+    void reset();
+
+    static QString domain2ip(QString domain);
 
 private:
     QString gta_sa;
@@ -37,8 +39,8 @@ private:
     QString size = "640*480";
     bool _winMode = false;
 
-    void initialise();
-    void uninitialise();
+    static void initialise();
+    static void uninitialise();
     BOOL Inject( DWORD pId, LPSTR dllName );
     BOOL memsetEx(DWORD pId, void *addr, char c, uint size);
     BOOL memcpyEx(DWORD pId, void *addr, char* buf, uint size);

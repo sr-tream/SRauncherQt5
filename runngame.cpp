@@ -2,7 +2,7 @@
 
 QString CRunGame::domain2ip(QString domain)
 {
-    char newIp[64];
+    char newIp[64] = {0};
     initialise();
     struct hostent *he = gethostbyname( domain.toStdString().c_str() );
     if ( he != NULL ){
@@ -164,4 +164,11 @@ void CRunGame::setWindowMode(bool mode)
 void CRunGame::setWindowSize(QString size)
 {
     this->size = size;
+}
+
+void CRunGame::reset()
+{
+    libs.clear();
+    _winMode = false;
+    size = "640*480";
 }

@@ -6,11 +6,10 @@ SRauncher::SRauncher(QWidget *parent) :
     ui(new Ui::SRauncher)
 {
     ui->setupUi(this);
-    this->setFixedSize(450, 380);
+    this->setFixedSize(450, 400);
     rx.setPattern(R"((.*):(\d{1,5}))");
     ui->btnRemove->setEnabled(false);
     ui->btnRename->setEnabled(false);
-    manager = new QNetworkAccessManager(this);
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
     ui->edtNick->setText(regset->value("PlayerName").toString());
@@ -20,6 +19,10 @@ SRauncher::SRauncher(QWidget *parent) :
     sets = new CSettings(servers, this);
     rename = new ServerRename(this);
     udp = nullptr;
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), SLOT(updateServerInfo()));
+    timer->start(regset->value("time_update").toInt());
 }
 
 SRauncher::~SRauncher()
@@ -45,90 +48,26 @@ void SRauncher::changeEvent(QEvent *e)
     }
 }
 
-void SRauncher::AddToSrvList()
-{
-    QNetworkReply *reply=
-      qobject_cast<QNetworkReply *>(sender());
-
-    if (reply->error() == QNetworkReply::NoError)
-    {
-      // Получаем содержимое ответа
-      QByteArray content= reply->readAll();
-
-      // Реализуем преобразование кодировки
-      // (зависит от кодировки сайта)
-      QTextCodec *codec = QTextCodec::codecForName("cp1251");
-
-      // Выводим результат
-      stServer srv;
-      srv.name = codec->toUnicode(content.data());
-      bool _next = true;
-      foreach (auto it, g_SrvList)
-          if (it.name == srv.name)
-              _next = false;
-      if (_next){
-
-          if (rx.indexIn(ui->edtIp->text()) != -1){
-              srv.ip = rx.cap(1);
-              srv.port = rx.cap(2).toShort();
-          } else {
-              srv.ip = ui->edtIp->text();
-              srv.port = 7777;
-          }
-          srv.gta_sa = "gta_sa.exe";
-          srv.samp = "samp.dll";
-          srv.nick = regset->value("PlayerName").toString();
-          ui->srvList->addItem(codec->toUnicode(content.data()));
-          g_SrvList[srv.name] = srv;
-      }
-      ui->edtIp->setText("");
-      ui->edtIp->setEnabled(true);
-      ui->btnAddSrv->setEnabled(true);
-    }
-
-    // разрешаем объекту-ответа "удалится"
-    reply->deleteLater();
-}
-
-void SRauncher::UpdateSrvInfo()
-{
-    if (!srvNeedUpd)
-        return;
-    srvNeedUpd = false;
-
-    QNetworkReply *reply=
-      qobject_cast<QNetworkReply *>(sender());
-
-    if (reply->error() == QNetworkReply::NoError)
-    {
-      QByteArray content= reply->readAll();
-      QTextCodec *codec = QTextCodec::codecForName("cp1251");
-
-      ui->srvInfo->setText(codec->toUnicode(content.data()));
-    }
-
-    reply->deleteLater();
-}
-
 void SRauncher::on_btnAddSrv_clicked()
 {
     if (rx.indexIn(ui->edtIp->text()) != -1){
-        ui->edtIp->setEnabled(false);
-        ui->btnAddSrv->setEnabled(false);
-        // берем адрес введенный в текстовое поле
-        QUrl url("http://samp.prime-hack.net/?ip=" + rx.cap(1) +
-                 "&port=" + rx.cap(2) + "&info=name");
+        stServer srv;
+        srv.name = "";
+        srv.gta_sa = "gta_sa.exe";
+        srv.samp = "samp.dll";
+        srv.nick = regset->value("PlayerName").toString();
+        srv.ip = rx.cap(1);
+        srv.port = rx.cap(2).toShort();
+        QString name = rx.cap(1) + ":" + rx.cap(2);
+        g_SrvList[name] = srv;
+        QListWidgetItem *item = new QListWidgetItem(name, ui->srvList);
+        ui->srvList->addItem(item);
 
-        // создаем объект для запроса
-        QNetworkRequest request(url);
-
-        // Выполняем запрос, получаем указатель на объект
-        // ответственный за ответ
-        QNetworkReply* reply=  manager->get(request);
-
-        // Подписываемся на сигнал о готовности загрузки
-        connect( reply, SIGNAL(finished()),
-                 this, SLOT(AddToSrvList()) );
+        if (udp != nullptr)
+            delete udp;
+        udp = new CUdpConnect(item, regset->value("client_port").toUInt(), this);
+        udp->requestPing();
+        udp->requestInfo();
     } else {
         QMessageBox msgBox;
         msgBox.setText("Bad IP:Port");
@@ -142,28 +81,37 @@ void SRauncher::on_srvList_itemClicked(QListWidgetItem *item)
     ui->btnRename->setEnabled(true);
 
     stServer srv = g_SrvList[item->text()];
-    if (udp != nullptr)
-        delete udp;
-    udp = new CUdpConnect(srv.ip, srv.port, this);
-    for(int i = 0; i < 3; ++i){
-        udp->requestInfo();
-        udp->requestRule();
+    if (udp == nullptr){
+        udp = new CUdpConnect(item, regset->value("client_port").toUInt(), this);
+        udp->setPing(ui->tsPing);
+        udp->setPlayers(ui->tsPlayers);
+        udp->setTime(ui->tsTime);
+        udp->setWeather(ui->tsWeather);
+        udp->setMap(ui->tsMap);
+        udp->setMode(ui->tsMode);
+        udp->setUrl(ui->tsUrl);
+        udp->setLng(ui->tsLng);
     }
-    QUrl url("http://samp.prime-hack.net/?ip=" + srv.ip +
-             "&port=" + QString::number(srv.port) + "&info=bingui");
+    udp->requestPing(false);
+    udp->requestInfo(false);
+    udp->requestRule(false);
 
     ui->edtIp->setText(srv.ip + ":" + QString::number(srv.port));
+}
 
-    QNetworkRequest request(url);
-    QNetworkReply* reply=  manager->get(request);
-    connect( reply, SIGNAL(finished()),
-             this, SLOT(UpdateSrvInfo()) );
-    ui->srvInfo->setText("Please wait, information is updating...");
-    srvNeedUpd = true;
+void SRauncher::updateServerInfo()
+{
+    if (udp != nullptr){
+        udp->requestPing(false);
+        udp->requestInfo(false);
+        udp->requestRule(false);
+    }
+    timer->setInterval(regset->value("time_update").toInt());
 }
 
 void SRauncher::on_btnConnect_clicked()
 {
+    game->reset();
     game->setGta(ui->edtGta->text());
     game->addLib(ui->edtSamp->text());
 
@@ -225,6 +173,21 @@ void SRauncher::on_srvList_currentItemChanged(QListWidgetItem *current, QListWid
     ui->edtSamp->setText(g_SrvList[current->text()].samp);
     ui->edtNick->setText(g_SrvList[current->text()].nick);
     ui->edtComment->setText(g_SrvList[current->text()].comment);
+
+    if (udp != nullptr)
+        delete udp;
+    udp = new CUdpConnect(current, regset->value("client_port").toUInt(), this);
+    udp->setPing(ui->tsPing);
+    udp->setPlayers(ui->tsPlayers);
+    udp->setTime(ui->tsTime);
+    udp->setWeather(ui->tsWeather);
+    udp->setMap(ui->tsMap);
+    udp->setMode(ui->tsMode);
+    udp->setUrl(ui->tsUrl);
+    udp->setLng(ui->tsLng);
+    udp->requestPing();
+    udp->requestInfo();
+    udp->requestRule();
 }
 
 void SRauncher::on_btnInject_clicked()
@@ -235,4 +198,12 @@ void SRauncher::on_btnInject_clicked()
 void SRauncher::on_btnSettings_clicked()
 {
     sets->show();
+}
+
+void SRauncher::on_tsUrl_linkActivated(const QString &link)
+{
+    QMessageBox msgBox;
+    msgBox.setText("Click");
+    msgBox.exec();
+    QDesktopServices::openUrl(QUrl("http://" + link));
 }

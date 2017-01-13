@@ -6,7 +6,7 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui(new Ui::CSettings)
 {
     ui->setupUi(this);
-    this->setFixedSize(162, 110);
+    this->setFixedSize(250, 140);
     this->servers = servers;
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
@@ -14,6 +14,12 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui->cbWinMode->setChecked(regset->value("win_mode").toBool());
     ui->comboBox->setEnabled(ui->cbWinMode->isChecked());
     ui->comboBox->setCurrentIndex(regset->value("win_size").toInt());
+    ui->edtPort->setText(regset->value("client_port").toString());
+    ui->edtPort->setValidator(new QIntValidator(1024, 49151, ui->edtPort));
+    if (regset->value("time_update").toInt() == 0)
+        regset->setValue("time_update", 500);
+    ui->dial->setValue(regset->value("time_update").toInt());
+    ui->lcdNumber->setPalette(Qt::gray);
 }
 
 CSettings::~CSettings()
@@ -31,6 +37,11 @@ void CSettings::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+void CSettings::closeEvent(QCloseEvent * e)
+{
+    regset->setValue("client_port", ui->edtPort->text());
+    e->accept();
 }
 
 void CSettings::on_cbAsiLoader_toggled(bool checked)
@@ -60,4 +71,9 @@ QString CSettings::getSize()
 void CSettings::on_comboBox_currentIndexChanged(int index)
 {
     regset->setValue("win_size", index);
+}
+
+void CSettings::on_dial_valueChanged(int value)
+{
+    regset->setValue("time_update", value);
 }

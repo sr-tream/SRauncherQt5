@@ -7,13 +7,9 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QRegExp>
-
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
-#include <QtNetwork/QNetworkReply>
-#include <QUrl>
-#include <QUrlQuery>
+#include <QDesktopServices>
 #include <QTextCodec>
+#include <QTimer>
 
 #include "sampservers.h"
 #include "serverrename.h"
@@ -38,8 +34,7 @@ protected:
     void changeEvent(QEvent *e);
 
 private slots:
-    void AddToSrvList();
-    void UpdateSrvInfo();
+    void updateServerInfo();
 
     void on_btnAddSrv_clicked();
 
@@ -57,9 +52,10 @@ private slots:
 
     void on_btnSettings_clicked();
 
+    void on_tsUrl_linkActivated(const QString &link);
+
 private:
     Ui::SRauncher *ui;
-    QNetworkAccessManager *manager;
     CSampServers *servers;
     QSettings *regset;
     CRunGame *game;
@@ -67,8 +63,8 @@ private:
     CUdpConnect* udp;
     CSettings *sets;
     ServerRename* rename;
+    QTimer *timer;
     QRegExp rx;
-    bool srvNeedUpd = false;
 };
 
 #endif // SRAUNCHER_H
