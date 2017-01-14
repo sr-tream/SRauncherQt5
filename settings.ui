@@ -64,9 +64,28 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>640*360</string>
+    </property>
+   </item>
    <item>
     <property name="text">
      <string>640*480</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>800*480</string>
     </property>
    </item>
    <item>
@@ -76,7 +95,32 @@
    </item>
    <item>
     <property name="text">
+     <string>848*480</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>960*540</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1024*600</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
      <string>1024*768</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1152*864</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1200*600</string>
     </property>
    </item>
    <item>
@@ -86,12 +130,72 @@
    </item>
    <item>
     <property name="text">
+     <string>1280*768</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1280*1024</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
      <string>1366*768</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>1400*800</string>
+     <string>1440*900</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1400*1050</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1536*960</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1536*1024</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1600*900</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1600*1024</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1600*1200</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1680*1050</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1920*1080</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1920*1200</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2048*1080</string>
     </property>
    </item>
   </widget>

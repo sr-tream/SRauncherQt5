@@ -20,6 +20,17 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
         regset->setValue("time_update", 500);
     ui->dial->setValue(regset->value("time_update").toInt());
     ui->lcdNumber->setPalette(Qt::gray);
+    QDesktopWidget *d = QApplication::desktop();
+    QRegExp rx(R"((\d*)\*(\d*))");
+    for(int i = 0; i < ui->comboBox->count(); ++i){
+        if (rx.indexIn(ui->comboBox->itemText(i)) != -1){
+            if (rx.cap(1).toShort() >= d->width() ||
+                rx.cap(2).toShort() >= d->height()){
+                ui->comboBox->removeItem(i);
+                --i;
+            }
+        }
+    }
 }
 
 CSettings::~CSettings()

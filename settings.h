@@ -5,6 +5,8 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QDesktopWidget>
+#include <QRegExp>
 
 #include "sampservers.h"
 
