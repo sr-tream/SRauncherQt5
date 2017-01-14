@@ -585,16 +585,16 @@
   <connection>
    <sender>srvList</sender>
    <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>btnRename</receiver>
+   <receiver>btnConnect</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>281</x>
-     <y>121</y>
+     <x>271</x>
+     <y>224</y>
     </hint>
     <hint type="destinationlabel">
-     <x>398</x>
-     <y>121</y>
+     <x>319</x>
+     <y>224</y>
     </hint>
    </hints>
   </connection>

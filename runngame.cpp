@@ -53,7 +53,17 @@ void CRunGame::Connect(QString nick, QString ip, ushort port)
                 ExitProcess(0);
               }
           }
-        ResumeThread(pi.hThread);
+          WriteIntEx(pi.dwProcessId, (void*)0xC8D4C0, 5);
+          WriteIntEx(pi.dwProcessId, (void*)0x5909AB, 1);
+          memsetEx(pi.dwProcessId, (void*)0x5737E0, 0x75, 1);
+          memcpyEx(pi.dwProcessId, (void*)0x590AF0,
+                   (char*)"\xE9\x40\x01\x00\x00", 5);
+          memcpyEx(pi.dwProcessId, (void*)0x748E52 , (char*)"\x75\x12", 2);
+          memsetEx(pi.dwProcessId, (void*)0x590D7C, 0x90, 5);
+          memsetEx(pi.dwProcessId, (void*)0x590DB3, 0x90, 5);
+          memcpyEx(pi.dwProcessId, (void*)0x590D9F,
+                   (char*)"\xC3\x90\x90\x90\x90", 5);
+          ResumeThread(pi.hThread);
       }
     } else MessageBoxA(NULL, "Failed to Create Process", "Error", MB_ICONERROR);
 }
