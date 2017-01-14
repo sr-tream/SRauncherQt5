@@ -81,11 +81,6 @@
    </item>
    <item>
     <property name="text">
-     <string>1280*1024</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
      <string>1280*720</string>
     </property>
    </item>
@@ -96,12 +91,7 @@
    </item>
    <item>
     <property name="text">
-     <string>1400*850</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>1600*900</string>
+     <string>1400*800</string>
     </property>
    </item>
   </widget>
@@ -143,7 +133,7 @@
    <property name="title">
     <string>Renewal time</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
