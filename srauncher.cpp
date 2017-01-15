@@ -277,3 +277,29 @@ void SRauncher::on_btnGroupAdd_clicked()
 {
     groupMgr->show();
 }
+
+void SRauncher::on_btnDebug_clicked()
+{
+    game->reset();
+    game->setGta(ui->edtGta->text());
+    game->addLib("samp.dll");
+
+    if (regset->value("asi_loader").toBool()){
+        QDir dir;
+        dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+        dir.setSorting(QDir::Name);
+        QFileInfoList list = dir.entryInfoList();
+        for (int i = 0; i < list.size(); ++i) {
+            QFileInfo fileInfo = list.at(i);
+            if (fileInfo.suffix().toLower() == "asi")
+                game->addLib(fileInfo.fileName());
+        }
+    }
+    game->setWindowMode(regset->value("win_mode").toBool());
+    game->setWindowSize(sets->getSize());
+
+    QList<QString> addLibs = inject->enabledLibs();
+    foreach (auto lib, addLibs)
+        game->addLib(lib);
+    game->Debug();
+}

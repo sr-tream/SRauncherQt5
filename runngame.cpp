@@ -14,58 +14,39 @@ QString CRunGame::domain2ip(QString domain)
 
 void CRunGame::Connect(QString nick, QString ip, ushort port)
 {
-    STARTUPINFOA cif;
-    ZeroMemory( &cif, sizeof( STARTUPINFOA ) );
-    PROCESS_INFORMATION pi;
     char param[128];
     sprintf( param, "-c -n %s -h %s -p %d",
              nick.toStdString().c_str(),
              domain2ip(ip).toStdString().c_str(),
              port );
-    if(CreateProcessA("gta_sa.exe", param, NULL,NULL, FALSE, DETACHED_PROCESS | CREATE_SUSPENDED, NULL, NULL, &cif, &pi))
-    {
-      if(pi.hProcess!=NULL)
-      {
-          if (_winMode){
-              memsetEx(pi.dwProcessId, (void*)0x74595E, 0x90, 34);
-              memsetEx(pi.dwProcessId, (void*)0x746225, 0x90, 2);
-              memcpyEx(pi.dwProcessId, (void*)0x746236,
-                       (char*)"\x90\x90\x33\xC0\xA3\xF4\x20\xC9\x00\xA3\x20\x62\x8D\x00\x90\x90\x40\x85\xC0",
-                       19);
-              memsetEx(pi.dwProcessId, (void*)0x748AB4, 0x90, 2);
-
-              QRegExp rx(R"((\d*)\*(\d*))");
-              if (rx.indexIn(size) != -1){
-                  QDesktopWidget *d = QApplication::desktop();
-                  WriteIntEx(pi.dwProcessId, (void*)0x7455C8,
-                             (d->width() - rx.cap(1).toShort()) / 2);
-                  WriteIntEx(pi.dwProcessId, (void*)0x7455C3,
-                             (d->height() - rx.cap(2).toShort()) / 2);
-                  memsetEx(pi.dwProcessId, (void*)0x61960C, 0x90, 0x14);
-                  WriteIntEx(pi.dwProcessId, (void*)0xC17044, rx.cap(1).toInt());
-                  WriteIntEx(pi.dwProcessId, (void*)0xC17048, rx.cap(2).toInt());
-              }
-          }
-          foreach (auto lib, libs) {
-              if(!Inject(pi.dwProcessId, (char*)lib.toStdString().c_str()))
-              {
+    PROCESS_INFORMATION pi = runGame(param);
+    if(pi.hProcess!=NULL){
+        winMode(pi.dwProcessId);
+        foreach (auto lib, libs) {
+            if(!Inject(pi.dwProcessId, (char*)lib.toStdString().c_str())){
                 TerminateProcess(pi.hProcess, 0);
                 ExitProcess(0);
-              }
-          }
-          WriteIntEx(pi.dwProcessId, (void*)0xC8D4C0, 5);
-          WriteIntEx(pi.dwProcessId, (void*)0x5909AB, 1);
-          memsetEx(pi.dwProcessId, (void*)0x5737E0, 0x75, 1);
-          memcpyEx(pi.dwProcessId, (void*)0x590AF0,
-                   (char*)"\xE9\x40\x01\x00\x00", 5);
-          memcpyEx(pi.dwProcessId, (void*)0x748E52 , (char*)"\x75\x12", 2);
-          memsetEx(pi.dwProcessId, (void*)0x590D7C, 0x90, 5);
-          memsetEx(pi.dwProcessId, (void*)0x590DB3, 0x90, 5);
-          memcpyEx(pi.dwProcessId, (void*)0x590D9F,
-                   (char*)"\xC3\x90\x90\x90\x90", 5);
-          ResumeThread(pi.hThread);
-      }
-    } else MessageBoxA(NULL, "Failed to Create Process", "Error", MB_ICONERROR);
+            }
+        }
+        fastRun(pi.dwProcessId);
+        ResumeThread(pi.hThread);
+    }
+}
+
+void CRunGame::Debug()
+{
+    PROCESS_INFORMATION pi = runGame((char*)"-d");
+    if(pi.hProcess!=NULL){
+        winMode(pi.dwProcessId);
+        foreach (auto lib, libs) {
+            if(!Inject(pi.dwProcessId, (char*)lib.toStdString().c_str())){
+                TerminateProcess(pi.hProcess, 0);
+                ExitProcess(0);
+            }
+        }
+        fastRun(pi.dwProcessId);
+        ResumeThread(pi.hThread);
+    }
 }
 
 QString CRunGame::Gta()
@@ -174,6 +155,50 @@ void CRunGame::setWindowMode(bool mode)
 void CRunGame::setWindowSize(QString size)
 {
     this->size = size;
+}
+
+void CRunGame::winMode(DWORD pId)
+{
+    if (!_winMode)
+        return;
+    memsetEx(pId, (void*)0x74595E, 0x90, 34);
+    memsetEx(pId, (void*)0x746225, 0x90, 2);
+    memcpyEx(pId, (void*)0x746236,
+             (char*)"\x90\x90\x33\xC0\xA3\xF4\x20\xC9\x00\xA3\x20\x62\x8D\x00\x90\x90\x40\x85\xC0",
+             19);
+    memsetEx(pId, (void*)0x748AB4, 0x90, 2);
+
+    QRegExp rx(R"((\d*)\*(\d*))");
+    if (rx.indexIn(size) != -1){
+        QDesktopWidget *d = QApplication::desktop();
+        WriteIntEx(pId, (void*)0x7455C8, (d->width() - rx.cap(1).toShort()) / 2);
+        WriteIntEx(pId, (void*)0x7455C3, (d->height() - rx.cap(2).toShort()) / 2);
+        memsetEx(pId, (void*)0x61960C, 0x90, 0x14);
+        WriteIntEx(pId, (void*)0xC17044, rx.cap(1).toInt());
+        WriteIntEx(pId, (void*)0xC17048, rx.cap(2).toInt());
+    }
+}
+
+void CRunGame::fastRun(DWORD pId)
+{
+    WriteIntEx(pId, (void*)0xC8D4C0, 5);
+    WriteIntEx(pId, (void*)0x5909AB, 1);
+    memsetEx(pId, (void*)0x5737E0, 0x75, 1);
+    memcpyEx(pId, (void*)0x590AF0, (char*)"\xE9\x40\x01\x00\x00", 5);
+    memcpyEx(pId, (void*)0x748E52 , (char*)"\x75\x12", 2);
+    memsetEx(pId, (void*)0x590D7C, 0x90, 5);
+    memsetEx(pId, (void*)0x590DB3, 0x90, 5);
+    memcpyEx(pId, (void*)0x590D9F, (char*)"\xC3\x90\x90\x90\x90", 5);
+}
+
+PROCESS_INFORMATION CRunGame::runGame(LPSTR param)
+{
+    STARTUPINFOA cif;
+    ZeroMemory( &cif, sizeof( STARTUPINFOA ) );
+    PROCESS_INFORMATION pi;
+    if(!CreateProcessA("gta_sa.exe", param, NULL,NULL, FALSE, DETACHED_PROCESS | CREATE_SUSPENDED, NULL, NULL, &cif, &pi))
+        MessageBoxA(NULL, "Failed to Create Process", "Error", MB_ICONERROR);
+    return pi;
 }
 
 void CRunGame::reset()

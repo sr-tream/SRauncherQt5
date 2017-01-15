@@ -66,6 +66,8 @@ private slots:
 
     void on_btnGroupAdd_clicked();
 
+    void on_btnDebug_clicked();
+
 private:
     Ui::SRauncher *ui;
     CSampServers *servers;

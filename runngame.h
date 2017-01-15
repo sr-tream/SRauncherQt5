@@ -20,6 +20,7 @@ class CRunGame
 {
 public:
     void Connect(QString nick, QString ip, ushort port);
+    void Debug();
 
     QString Gta();
     QList<QString> Libs();
@@ -45,6 +46,10 @@ private:
     BOOL memsetEx(DWORD pId, void *addr, char c, uint size);
     BOOL memcpyEx(DWORD pId, void *addr, char* buf, uint size);
     BOOL WriteIntEx(DWORD pId, void *addr, int v);
+
+    void winMode(DWORD pId);
+    void fastRun(DWORD pId);
+    PROCESS_INFORMATION runGame(LPSTR param);
 };
 
 #endif // RUNNGAME_H
