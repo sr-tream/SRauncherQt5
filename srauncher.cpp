@@ -247,7 +247,6 @@ void SRauncher::on_cbGroup_currentIndexChanged(const QString &arg1)
             ui->srvList->currentRow() < ui->srvList->count()){
         QList<QListWidgetItem *> lst = ui->srvList->selectedItems();
         g_SrvList[lst.front()->text()].gta_sa = ui->edtGta->text();
-        g_SrvList[lst.front()->text()].group = ui->cbGroup->currentText();
         g_SrvList[lst.front()->text()].nick = ui->edtNick->text();
         g_SrvList[lst.front()->text()].comment = ui->edtComment->toPlainText();
     }
