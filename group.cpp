@@ -41,8 +41,3 @@ void CGroup::on_buttonBox_accepted()
     }
     ui->edtName->setText("");
 }
-
-void CGroup::on_edtName_returnPressed()
-{
-    on_buttonBox_accepted();
-}

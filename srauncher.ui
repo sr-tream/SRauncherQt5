@@ -98,9 +98,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>60</y>
       <width>281</width>
-      <height>201</height>
+      <height>191</height>
      </rect>
     </property>
     <property name="sortingEnabled">
@@ -540,7 +540,7 @@
       <x>10</x>
       <y>30</y>
       <width>281</width>
-      <height>21</height>
+      <height>25</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">

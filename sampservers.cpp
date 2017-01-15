@@ -13,9 +13,14 @@ CSampServers::CSampServers(QString stdNick, QComboBox *cbox, QListWidget *list)
                             locate(QStandardPaths::DocumentsLocation,
                             "GTA San Andreas User Files/SAMP/USERDATA.DAT");
         file = new QFile(file_path);
+        file->open(QIODevice::ReadOnly);
+        if (!file->isReadable())
+            return;
         srdata = false;
     }
     file->open(QIODevice::ReadWrite);
+    if (!file->isWritable() || !file->isReadable())
+        return;
     file_data = file->readAll();
 
     if (!srdata){
@@ -70,6 +75,8 @@ CSampServers::~CSampServers()
     if (file->exists())
         file->remove();
     file->open(QIODevice::WriteOnly);
+    if (!file->isWritable())
+        return;
     file->reset();
     uint size = g_SrvList.size();
     file->write((const char*)&size, 4);
@@ -166,7 +173,9 @@ void CSampServers::Import()
                         "GTA San Andreas User Files/SAMP/USERDATA.DAT");
     file_data.clear();
     QFile *ifile = new QFile(file_path);
-    ifile->open(QIODevice::ReadWrite);
+    ifile->open(QIODevice::ReadOnly);
+    if (!file->isReadable())
+        return;
     file_data = ifile->readAll();
     ClassicLoad();
     ifile->close();

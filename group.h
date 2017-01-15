@@ -22,8 +22,6 @@ protected:
 private slots:
     void on_buttonBox_accepted();
 
-    void on_edtName_returnPressed();
-
 private:
     Ui::CGroup *ui;
     QComboBox *cbox;
