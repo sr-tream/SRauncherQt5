@@ -22,7 +22,8 @@ class CUdpConnect : public QObject
 {
     Q_OBJECT
 public:
-    CUdpConnect(QListWidgetItem *item, ushort rPort, QObject *parent);
+    CUdpConnect(QListWidgetItem *item, QString group, ushort rPort, QObject *parent);
+    ~CUdpConnect();
 
     void Send(QByteArray data);
     QByteArray CreatePacket(QString payLoad);
@@ -47,6 +48,7 @@ public slots:
 private:
     QUdpSocket* socket;
     QListWidgetItem *item;
+    QString group;
     QString ip;
     QString port;
     uint time_connect;

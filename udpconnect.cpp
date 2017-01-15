@@ -2,11 +2,12 @@
 #include "sampservers.h"
 #include "runngame.h"
 
-CUdpConnect::CUdpConnect(QListWidgetItem *item, ushort rPort, QObject *parent) : QObject(parent)
+CUdpConnect::CUdpConnect(QListWidgetItem *item, QString group, ushort rPort, QObject *parent) : QObject(parent)
 {
     this->item = item;
+    this->group = group;
     this->rPort = rPort;
-    stServer srv = g_SrvList[item->text()];
+    auto srv = CSampServers::FindServer(item->text(), group);
     ip = CRunGame::domain2ip(srv.ip);
     port = QString::number(srv.port);
 
@@ -15,10 +16,17 @@ CUdpConnect::CUdpConnect(QListWidgetItem *item, ushort rPort, QObject *parent) :
     QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
 }
 
+CUdpConnect::~CUdpConnect()
+{
+    QObject::disconnect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
+    socket->close();
+    delete socket;
+}
+
 void CUdpConnect::Send(QByteArray data)
 {
-    for (int i = 0; i < 3; ++i) //Instread TCP
-        socket->writeDatagram(data, QHostAddress(ip), port.toShort());
+    socket->writeDatagram(data, QHostAddress(ip), port.toShort());
+    time_connect = QTime::currentTime().msecsSinceStartOfDay();
 }
 
 void CUdpConnect::readPendingDatagrams()
@@ -32,11 +40,10 @@ void CUdpConnect::readPendingDatagrams()
     socket->readDatagram(buffer.data(), buffer.size(),
                              &sender, &senderPort);
 
-    if (buffer[10] == 'p'){
-        if (ping != nullptr)
-            ping->setText(QString::number(QTime::currentTime().msecsSinceStartOfDay() - time_connect));
-    }
-    else if (buffer[10] == 'i'){ // Info
+
+    if (ping != nullptr)
+        ping->setText(QString::number(QTime::currentTime().msecsSinceStartOfDay() - time_connect));
+    if (buffer[10] == 'i'){ // Info
         buffer[11]; // Password
         uint offset = 12;
 
@@ -47,12 +54,12 @@ void CUdpConnect::readPendingDatagrams()
                          QString::number(maxplayers));
 
         QString name = read<QString>(buffer, offset);
-        stServer srv = g_SrvList[item->text()];
+        auto srv = CSampServers::FindServer(item->text(), group);
         if (item->text() == QString(srv.ip + ":" + QString::number(srv.port))
             && srv.name == QString(srv.ip + ":" + QString::number(srv.port))){
 
             foreach (auto it, g_SrvList)
-                if (it.name == name)
+                if (it.name == name && it.group == group)
                     name += "#double";
             srv.name = name;
             g_SrvList[name] = srv;
@@ -101,7 +108,6 @@ void CUdpConnect::requestPing(bool changedServer)
     data.push_back(_port.bytes[1]);
     data.push_back(QString("p" + QString::number(rPort)).toStdString().c_str());
     Send(data);
-    time_connect = QTime::currentTime().msecsSinceStartOfDay();
     if (ping != nullptr && changedServer)
         ping->setText("");
 }

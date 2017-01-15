@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     runngame.cpp \
     selectlibs.cpp \
     udpconnect.cpp \
-    settings.cpp
+    settings.cpp \
+    group.cpp
 
 HEADERS  += srauncher.h \
     sampservers.h \
@@ -38,12 +39,14 @@ HEADERS  += srauncher.h \
     runngame.h \
     selectlibs.h \
     udpconnect.h \
-    settings.h
+    settings.h \
+    group.h
 
 FORMS    += srauncher.ui \
     serverrename.ui \
     selectlibs.ui \
-    settings.ui
+    settings.ui \
+    group.ui
 
 DISTFILES +=
 

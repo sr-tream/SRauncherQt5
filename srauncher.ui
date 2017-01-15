@@ -98,9 +98,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>50</y>
       <width>281</width>
-      <height>221</height>
+      <height>201</height>
      </rect>
     </property>
     <property name="sortingEnabled">
@@ -130,7 +130,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Add server</string>
+     <string>Add/move server</string>
     </property>
    </widget>
    <widget class="QWidget" name="formLayoutWidget">
@@ -139,7 +139,7 @@
       <x>300</x>
       <y>130</y>
       <width>141</width>
-      <height>51</height>
+      <height>31</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -154,20 +154,6 @@
       <widget class="QLineEdit" name="edtGta">
        <property name="text">
         <string>gta_sa.exe</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="txtSamp">
-       <property name="text">
-        <string>samp:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="edtSamp">
-       <property name="text">
-        <string>samp.dll</string>
        </property>
       </widget>
      </item>
@@ -248,24 +234,11 @@
      <string>rename</string>
     </property>
    </widget>
-   <widget class="Line" name="line_2">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>175</y>
-      <width>161</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>190</y>
+      <y>160</y>
       <width>141</width>
       <height>58</height>
      </rect>
@@ -561,6 +534,168 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>281</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="txtGroup">
+       <property name="maximumSize">
+        <size>
+         <width>35</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Group:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cbGroup"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnGroupAdd">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnGroupRemove">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>remove</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>227</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>120</red>
+          <green>120</green>
+          <blue>120</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>120</red>
+          <green>120</green>
+          <blue>120</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="cursor">
+     <cursorShape>ForbiddenCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Here may be something new!</string>
+    </property>
+   </widget>
+   <widget class="QMdiArea" name="mdiArea">
+    <property name="geometry">
+     <rect>
+      <x>299</x>
+      <y>225</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>srvList</zorder>
+   <zorder>line</zorder>
+   <zorder>btnAddSrv</zorder>
+   <zorder>formLayoutWidget</zorder>
+   <zorder>txtComment</zorder>
+   <zorder>edtComment</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
+   <zorder>btnRemove</zorder>
+   <zorder>btnRename</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>formLayoutWidget_2</zorder>
+   <zorder>horizontalLayoutWidget_3</zorder>
+   <zorder>mdiArea</zorder>
+   <zorder>label</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

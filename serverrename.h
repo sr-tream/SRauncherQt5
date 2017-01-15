@@ -18,7 +18,7 @@ public:
     explicit ServerRename(QWidget *parent = 0);
     ~ServerRename();
 
-    void setServer(QListWidgetItem *srv);
+    void setServer(QListWidgetItem *srv, QString group);
 
 protected:
     void changeEvent(QEvent *e);

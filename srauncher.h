@@ -17,6 +17,7 @@
 #include "runngame.h"
 #include "udpconnect.h"
 #include "settings.h"
+#include "group.h"
 
 namespace Ui {
 class SRauncher;
@@ -30,8 +31,13 @@ public:
     explicit SRauncher(QWidget *parent = 0);
     ~SRauncher();
 
+private:
+    CGroup *groupMgr; //WTF? Dont work if declarad in end
+
 protected:
     void changeEvent(QEvent *e);
+    void closeEvent(QCloseEvent * e);
+
 
 private slots:
     void updateServerInfo();
@@ -54,13 +60,19 @@ private slots:
 
     void on_tsUrl_linkActivated(const QString &link);
 
+    void on_cbGroup_currentIndexChanged(const QString &arg1);
+
+    void on_btnGroupRemove_clicked();
+
+    void on_btnGroupAdd_clicked();
+
 private:
     Ui::SRauncher *ui;
     CSampServers *servers;
     QSettings *regset;
     CRunGame *game;
-    SelectLibs* inject;
     CUdpConnect* udp;
+    SelectLibs* inject;
     CSettings *sets;
     ServerRename* rename;
     QTimer *timer;

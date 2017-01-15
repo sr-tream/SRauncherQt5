@@ -7,6 +7,7 @@
 #include <QStandardPaths>
 #include <QTextCodec>
 #include <QListWidget>
+#include <QComboBox>
 
 typedef uint8_t byte;
 
@@ -14,7 +15,7 @@ struct stServer{
     QString name;
     QString comment;
     QString gta_sa;
-    QString samp;
+    QString group;
     QString nick;
     QString ip;
     uint port;
@@ -30,16 +31,19 @@ union byteValue{
 class CSampServers
 {
 public:
-    CSampServers(QString stdNick, QListWidget *list = nullptr);
+    CSampServers(QString stdNick, QComboBox *cbox = nullptr, QListWidget *list = nullptr);
     ~CSampServers();
 
     void Import();
+
+    static stServer FindServer(QString name, QString group = "");
 
 private:
     QFile* file;
     QByteArray file_data;
     QString stdNick;
     QListWidget *list;
+    QComboBox *cbox;
 
     void ClassicLoad();
     uint read(uint &offset);

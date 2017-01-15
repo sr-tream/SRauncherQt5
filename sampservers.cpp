@@ -1,10 +1,11 @@
 #include "sampservers.h"
 QMap<QString, stServer> g_SrvList;
 
-CSampServers::CSampServers(QString stdNick, QListWidget *list)
+CSampServers::CSampServers(QString stdNick, QComboBox *cbox, QListWidget *list)
 {
     this->stdNick = stdNick;
     this->list = list;
+    this->cbox = cbox;
     file = new QFile("SRDATA.DAT");
     if (!file->exists()){
         delete file;
@@ -37,13 +38,25 @@ CSampServers::CSampServers(QString stdNick, QListWidget *list)
         len = read(offset);
         srv.gta_sa = read(offset, len);
         len = read(offset);
-        srv.samp = read(offset, len);
+        srv.group = read(offset, len);
+        if (cbox != nullptr){
+            bool isDefined = false;
+            for (int j = 0; j < cbox->count(); ++j)
+                if (cbox->itemText(j) == srv.group){
+                    isDefined = true;
+                    break;
+                }
+            if (!isDefined)
+                cbox->addItem(srv.group);
+        }
         len = read(offset);
         srv.nick = read(offset, len);
 
         g_SrvList[srv.name] = srv;
-        if (list != nullptr)
-            list->addItem(srv.name);
+        if (list != nullptr){
+            if (cbox != nullptr && cbox->currentText() == srv.group)
+                list->addItem(srv.name);
+        }
     }
 }
 
@@ -65,6 +78,18 @@ CSampServers::~CSampServers()
             size--;
             continue;
         }
+        if (cbox != nullptr){
+            bool isDefined = false;
+            for (int j = 0; j < cbox->count(); ++j)
+                if (cbox->itemText(j) == srv.group){
+                    isDefined = true;
+                    break;
+                }
+            if (!isDefined){
+                size--;
+                continue;
+            }
+        }
         uint len = srv.ip.length();
         file->write((const char*)&len, 4);
         file->write(srv.ip.toStdString().c_str(), srv.ip.length());
@@ -85,11 +110,11 @@ CSampServers::~CSampServers()
         QByteArray gta_sa(srv.gta_sa.toStdString().c_str());
         file->write(codec->fromUnicode(gta_sa).toStdString().c_str(),
                     srv.gta_sa.length());
-        len = srv.samp.length();
+        len = srv.group.length();
         file->write((const char*)&len, 4);
-        QByteArray samp(srv.samp.toStdString().c_str());
+        QByteArray samp(srv.group.toStdString().c_str());
         file->write(codec->fromUnicode(samp).toStdString().c_str(),
-                    srv.samp.length());
+                    srv.group.length());
         len = srv.nick.length();
         file->write((const char*)&len, 4);
         QByteArray nick(srv.nick.toStdString().c_str());
@@ -100,6 +125,15 @@ CSampServers::~CSampServers()
     file->reset();
     file->write((const char*)&size, 4);
     file->close();
+}
+
+stServer CSampServers::FindServer(QString name, QString group)
+{
+    foreach (auto srv, g_SrvList) {
+        if (srv.name == name && (srv.group == group || group.isEmpty()))
+            return srv;
+    }
+    return stServer({"","","","","","",0});
 }
 
 uint CSampServers::read(uint &offset)
@@ -156,7 +190,10 @@ void CSampServers::ClassicLoad()
         read(offset, len); //RCON
         srv.comment = "Imported from USERDATA.DAT";
         srv.gta_sa = "gta_sa.exe";
-        srv.samp = "samp.dll";
+        if (cbox != nullptr && !cbox->currentText().isEmpty())
+            srv.group = cbox->currentText();
+        else srv.group = "Imported";
+
         srv.nick = stdNick;
 
         if (g_SrvList[srv.name].name != srv.name){
@@ -164,5 +201,8 @@ void CSampServers::ClassicLoad()
             if (list != nullptr)
                 list->addItem(srv.name);
         }
+    }
+    if (cbox != nullptr && cbox->currentText().isEmpty()){
+        cbox->addItem("Imported");
     }
 }

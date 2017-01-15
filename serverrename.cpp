@@ -14,11 +14,13 @@ ServerRename::~ServerRename()
     delete ui;
 }
 
-void ServerRename::setServer(QListWidgetItem *srv)
+void ServerRename::setServer(QListWidgetItem *srv, QString group)
 {
     this->srv = srv;
-    old = g_SrvList[srv->text()];
-    ui->lineEdit->setText(srv->text());
+    if (srv != nullptr){
+        old = CSampServers::FindServer(srv->text(), group);
+        ui->lineEdit->setText(srv->text());
+    }
 }
 
 void ServerRename::changeEvent(QEvent *e)
@@ -35,7 +37,7 @@ void ServerRename::changeEvent(QEvent *e)
 
 void ServerRename::on_pushButton_clicked()
 {
-    if (ui->lineEdit->text() == old.name){
+    if (ui->lineEdit->text() == old.name || srv == nullptr){
         this->close();
         return;
     }
