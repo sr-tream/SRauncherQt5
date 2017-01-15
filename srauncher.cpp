@@ -243,6 +243,14 @@ void SRauncher::on_cbGroup_currentIndexChanged(const QString &arg1)
     ui->tsTime->setText("");
     ui->tsUrl->setText("");
     ui->tsWeather->setText("");
+    if (ui->srvList->currentRow() >=0 &&
+            ui->srvList->currentRow() < ui->srvList->count()){
+        QList<QListWidgetItem *> lst = ui->srvList->selectedItems();
+        g_SrvList[lst.front()->text()].gta_sa = ui->edtGta->text();
+        g_SrvList[lst.front()->text()].group = ui->cbGroup->currentText();
+        g_SrvList[lst.front()->text()].nick = ui->edtNick->text();
+        g_SrvList[lst.front()->text()].comment = ui->edtComment->toPlainText();
+    }
     ui->srvList->clear();
     foreach (auto srv, g_SrvList) {
         if (srv.group == arg1)

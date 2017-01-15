@@ -14,6 +14,9 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui->cbWinMode->setChecked(regset->value("win_mode").toBool());
     ui->comboBox->setEnabled(ui->cbWinMode->isChecked());
     ui->comboBox->setCurrentIndex(regset->value("win_size").toInt());
+    if (regset->value("client_port").toInt() < 2014 ||
+        regset->value("client_port").toInt() > 49151)
+        regset->setValue("client_port", 1337);
     ui->edtPort->setText(regset->value("client_port").toString());
     ui->edtPort->setValidator(new QIntValidator(1024, 49151, ui->edtPort));
     if (regset->value("time_update").toInt() == 0)
