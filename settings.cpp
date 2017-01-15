@@ -20,7 +20,7 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui->edtPort->setText(regset->value("client_port").toString());
     ui->edtPort->setValidator(new QIntValidator(1024, 49151, ui->edtPort));
     if (regset->value("time_update").toInt() == 0)
-        regset->setValue("time_update", 500);
+        regset->setValue("time_update", 1000);
     ui->dial->setValue(regset->value("time_update").toInt());
     ui->lcdNumber->setPalette(Qt::gray);
     QDesktopWidget *d = QApplication::desktop();
