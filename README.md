@@ -5,7 +5,7 @@ For building need Qt5.7 witch MSCV2015 (only x32)
 
 Thread on forum (RUS): https://prime-hack.net/threads/srauncher.2249/
 
-![Alt text](https://dl.prime-hack.net/02e42.png)
+![Alt text](https://dl.prime-hack.net/8t7mv.png)
 
 ## Features:
 * Each server remembers "your" nickname.
@@ -19,6 +19,9 @@ Thread on forum (RUS): https://prime-hack.net/threads/srauncher.2249/
 * It has the ability to selectively loading libraries
 * Can run the game in windowed mode
 * Can change resolution for windowed mode
+* Can set time for reneval info
+* Can set port for request info
+* Can sort servers by group
 
 
 
