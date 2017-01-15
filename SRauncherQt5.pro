@@ -45,3 +45,7 @@ FORMS    += srauncher.ui \
     selectlibs.ui \
     settings.ui
 
+DISTFILES +=
+
+win32:RC_FILE = resource.rc
+
