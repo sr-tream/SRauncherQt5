@@ -257,6 +257,10 @@ void SRauncher::on_btnGroupRemove_clicked()
         delete udp;
         udp = nullptr;
     }
+    foreach (auto srv, g_SrvList) {
+        if (srv.group == ui->cbGroup->currentText())
+            g_SrvList.remove(srv.name);
+    }
     ui->cbGroup->removeItem(ui->cbGroup->currentIndex());
 }
 
