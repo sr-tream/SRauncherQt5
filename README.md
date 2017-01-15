@@ -19,9 +19,9 @@ Thread on forum (RUS): https://prime-hack.net/threads/srauncher.2249/
 * It has the ability to selectively loading libraries
 * Can run the game in windowed mode
 * Can change resolution for windowed mode
-* Can set time for reneval info
-* Can set port for request info
-* Can sort servers by group
+* You can set time for reneval info
+* You can set port for request info
+* You can sort servers by group
 
 
 
