@@ -57,7 +57,10 @@ win32: LIBS += -luser32
 win32: LIBS += -lkernel32
 win32: LIBS += -lWS2_32
 
-win32: QMAKE_LFLAGS += -static-libgcc
-win32: QMAKE_LFLAGS += -static-libstdc++
-win32: QMAKE_LFLAGS_RELEASE += -static-libgcc
-win32: QMAKE_LFLAGS_RELEASE += -static-libstdc++
+win32: QMAKE_LFLAGS += -static -static-libgcc
+win32: QMAKE_LFLAGS += -static -static-libstdc++
+win32: QMAKE_LFLAGS_RELEASE += -static -static-libgcc
+win32: QMAKE_LFLAGS_RELEASE += -static -static-libstdc++
+
+INCLUDEPATH += C:/Qt/Qt5.7.1/5.7/Src/qtbase/include
+DEPENDPATH += C:/Qt/Qt5.7.1/5.7/Src/qtbase/include
