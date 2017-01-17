@@ -245,7 +245,6 @@ void SRauncher::on_cbGroup_currentIndexChanged(const QString &arg1)
     ui->tsTime->setText("");
     ui->tsUrl->setText("");
     ui->tsWeather->setText("");
-    ui->edtComment->setText("");
     if (ui->srvList->currentRow() >=0 &&
             ui->srvList->currentRow() < ui->srvList->count()){
         QList<QListWidgetItem *> lst = ui->srvList->selectedItems();
@@ -253,6 +252,7 @@ void SRauncher::on_cbGroup_currentIndexChanged(const QString &arg1)
         g_SrvList[lst.front()->text()].nick = ui->edtNick->text();
         g_SrvList[lst.front()->text()].comment = ui->edtComment->toPlainText();
     }
+    ui->edtComment->setText("");
     ui->srvList->clear();
     foreach (auto srv, g_SrvList) {
         if (srv.group == arg1)
