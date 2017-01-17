@@ -20,6 +20,7 @@ SRauncher::SRauncher(QWidget *parent) :
     rename = new ServerRename(this);
     groupMgr = new CGroup(ui->cbGroup, this);
     servers = new CSampServers(ui->edtNick->text(), ui->cbGroup, ui->srvList);
+    ui->cbGroup->setCurrentIndex(regset->value("group_id").toInt());
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), SLOT(updateServerInfo()));
@@ -53,6 +54,7 @@ void SRauncher::closeEvent(QCloseEvent * e)
         g_SrvList[lst.front()->text()].nick = ui->edtNick->text();
         g_SrvList[lst.front()->text()].comment = ui->edtComment->toPlainText();
     }
+    regset->setValue("group_id", ui->cbGroup->currentIndex());
     disconnect(timer, SIGNAL(timeout()), this, SLOT(updateServerInfo()));
     if (udp != nullptr){
         delete udp;
@@ -243,6 +245,7 @@ void SRauncher::on_cbGroup_currentIndexChanged(const QString &arg1)
     ui->tsTime->setText("");
     ui->tsUrl->setText("");
     ui->tsWeather->setText("");
+    ui->edtComment->setText("");
     if (ui->srvList->currentRow() >=0 &&
             ui->srvList->currentRow() < ui->srvList->count()){
         QList<QListWidgetItem *> lst = ui->srvList->selectedItems();
