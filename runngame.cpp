@@ -196,7 +196,7 @@ PROCESS_INFORMATION CRunGame::runGame(LPSTR param)
     STARTUPINFOA cif;
     ZeroMemory( &cif, sizeof( STARTUPINFOA ) );
     PROCESS_INFORMATION pi;
-    if(!CreateProcessA("gta_sa.exe", param, NULL,NULL, FALSE, DETACHED_PROCESS | CREATE_SUSPENDED, NULL, NULL, &cif, &pi))
+    if(!CreateProcessA(gta_sa.toStdString().c_str(), param, NULL,NULL, FALSE, DETACHED_PROCESS | CREATE_SUSPENDED, NULL, NULL, &cif, &pi))
         MessageBoxA(NULL, "Failed to Create Process", "Error", MB_ICONERROR);
     return pi;
 }
