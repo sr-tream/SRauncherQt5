@@ -12,9 +12,9 @@
 #include <stdio.h>
 #include <string>
 #include "winsock.h"
-#pragma comment(lib, "ws2_32.lib")
-#pragma comment(lib, "user32.lib")
-#pragma comment(lib, "kernel32.lib")
+//#pragma comment(lib, "ws2_32.lib")
+//#pragma comment(lib, "user32.lib")
+//#pragma comment(lib, "kernel32.lib")
 
 class CRunGame
 {

@@ -203,7 +203,7 @@ QByteArray CUdpConnect::CreatePacket(QString payLoad)
 }
 
 template<typename T> inline
-T CUdpConnect::read(QByteArray &array, uint &offset)
+T read::read(QByteArray &array, uint &offset)
 {
     byteValue<T> v;
     for (int i = 0; i < sizeof(T); ++i){
@@ -213,7 +213,7 @@ T CUdpConnect::read(QByteArray &array, uint &offset)
     return v.value;
 }
 template<> inline
-QString CUdpConnect::read(QByteArray &array, uint &offset)
+QString read::read(QByteArray &array, uint &offset)
 {
     byteValue<uint> v;
     v.bytes[0] = array[offset++];

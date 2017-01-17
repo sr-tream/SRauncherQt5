@@ -8,6 +8,7 @@
 #include <QTextCodec>
 #include <QListWidget>
 #include <QComboBox>
+#include <QtDebug>
 
 typedef uint8_t byte;
 
@@ -48,7 +49,7 @@ private:
     void ClassicLoad();
     uint read(uint &offset);
     QString read(uint &offset, uint len);
-    bool srdata = true;
+    bool srdata;
 };
 
 #endif // SAMPSERVERS_H

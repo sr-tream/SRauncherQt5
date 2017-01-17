@@ -17,6 +17,12 @@ T random(T min, T max)
 {
     return (T)(rand() * (max - min)) + min;
 }
+namespace read {
+    template <typename T>
+    T read(QByteArray &array, uint &offset);
+    template <>
+    QString read(QByteArray &array, uint &offset);
+}
 
 class CUdpConnect : public QObject
 {
@@ -64,9 +70,9 @@ private:
     QLabel *lng = nullptr;
 
     template<typename T>
-    T read(QByteArray &array, uint &offset);
-    template<>
-    QString read(QByteArray &array, uint &offset);
+    T read(QByteArray &array, uint &offset){
+        return read::read<T>(array, offset);
+    }
     QString readLimited(QByteArray &array, uint &offset);
 };
 

@@ -14,12 +14,12 @@ SRauncher::SRauncher(QWidget *parent) :
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
     ui->edtNick->setText(regset->value("PlayerName").toString());
-    servers = new CSampServers(ui->edtNick->text(), ui->cbGroup, ui->srvList);
     game = new CRunGame();
     inject = new SelectLibs(this);
     sets = new CSettings(servers, this);
     rename = new ServerRename(this);
     groupMgr = new CGroup(ui->cbGroup, this);
+    servers = new CSampServers(ui->edtNick->text(), ui->cbGroup, ui->srvList);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), SLOT(updateServerInfo()));

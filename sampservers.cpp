@@ -17,10 +17,12 @@ CSampServers::CSampServers(QString stdNick, QComboBox *cbox, QListWidget *list)
         if (!file->isReadable())
             return;
         srdata = false;
+    } else {
+        file->open(QIODevice::ReadWrite);
+        if (!file->isWritable() || !file->isReadable())
+            return;
+        srdata = true;
     }
-    file->open(QIODevice::ReadWrite);
-    if (!file->isWritable() || !file->isReadable())
-        return;
     file_data = file->readAll();
 
     if (!srdata){
@@ -28,8 +30,8 @@ CSampServers::CSampServers(QString stdNick, QComboBox *cbox, QListWidget *list)
         return;
     }
 
-    uint SrvCount = ((uint*)file_data.data())[0];
-    uint offset = 4;
+    uint offset = 0;
+    uint SrvCount = read(offset);
     stServer srv;
 
     for(uint i = 0; i < SrvCount; ++i){
@@ -50,7 +52,7 @@ CSampServers::CSampServers(QString stdNick, QComboBox *cbox, QListWidget *list)
                 if (cbox->itemText(j) == srv.group){
                     isDefined = true;
                     break;
-                }
+            }
             if (!isDefined)
                 cbox->addItem(srv.group);
         }
@@ -156,7 +158,7 @@ uint CSampServers::read(uint &offset)
 QString CSampServers::read(uint &offset, uint len)
 {
     char *buf = new char[len + 1];
-    for(int i = 0; i < len; ++i)
+    for(uint i = 0; i < len; ++i)
         buf[i] = file_data.data()[i + offset];
     offset += len;
     buf[len] = '\0';
@@ -183,8 +185,8 @@ void CSampServers::Import()
 
 void CSampServers::ClassicLoad()
 {
-    uint SrvCount = ((uint*)file_data.data())[2];
-    uint offset = 12;
+    uint offset = 8;
+    uint SrvCount = read(offset);
     stServer srv;
 
     for(uint i = 0; i < SrvCount; ++i){

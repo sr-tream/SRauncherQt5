@@ -52,3 +52,12 @@ DISTFILES +=
 
 win32:RC_FILE = resource.rc
 
+
+win32: LIBS += -luser32
+win32: LIBS += -lkernel32
+win32: LIBS += -lWS2_32
+
+win32: QMAKE_LFLAGS += -static-libgcc
+win32: QMAKE_LFLAGS += -static-libstdc++
+win32: QMAKE_LFLAGS_RELEASE += -static-libgcc
+win32: QMAKE_LFLAGS_RELEASE += -static-libstdc++
