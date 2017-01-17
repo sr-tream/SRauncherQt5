@@ -16,10 +16,10 @@ SRauncher::SRauncher(QWidget *parent) :
     ui->edtNick->setText(regset->value("PlayerName").toString());
     game = new CRunGame();
     inject = new SelectLibs(this);
-    sets = new CSettings(servers, this);
     rename = new ServerRename(this);
     groupMgr = new CGroup(ui->cbGroup, this);
     servers = new CSampServers(ui->edtNick->text(), ui->cbGroup, ui->srvList);
+    sets = new CSettings(servers, this);
     ui->cbGroup->setCurrentIndex(regset->value("group_id").toInt());
 
     timer = new QTimer(this);
