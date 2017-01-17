@@ -211,6 +211,8 @@ void SRauncher::on_srvList_currentItemChanged(QListWidgetItem *current, QListWid
         udp->requestRule();
 
         ui->edtIp->setText(srv.ip + ":" + QString::number(srv.port));
+    } else {
+        ui->edtComment->setText("");
     }
 }
 
@@ -252,7 +254,6 @@ void SRauncher::on_cbGroup_currentIndexChanged(const QString &arg1)
         g_SrvList[lst.front()->text()].nick = ui->edtNick->text();
         g_SrvList[lst.front()->text()].comment = ui->edtComment->toPlainText();
     }
-    ui->edtComment->setText("");
     ui->srvList->clear();
     foreach (auto srv, g_SrvList) {
         if (srv.group == arg1)
