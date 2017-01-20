@@ -5,7 +5,7 @@
 #include <QDir>
 #include <QListWidgetItem>
 #include <QList>
-#include <Windows.h>
+#include <windows.h>
 
 namespace Ui {
 class SelectLibs;

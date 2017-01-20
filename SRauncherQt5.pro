@@ -55,7 +55,7 @@ win32:RC_FILE = resource.rc
 
 win32: LIBS += -luser32
 win32: LIBS += -lkernel32
-win32: LIBS += -lWS2_32
+win32: LIBS += -lws2_32
 
 win32: QMAKE_LFLAGS += -static -static-libgcc
 win32: QMAKE_LFLAGS += -static -static-libstdc++
@@ -64,3 +64,4 @@ win32: QMAKE_LFLAGS_RELEASE += -static -static-libstdc++
 
 INCLUDEPATH += C:/Qt/Qt5.7.1/5.7/Src/qtbase/include
 DEPENDPATH += C:/Qt/Qt5.7.1/5.7/Src/qtbase/include
+

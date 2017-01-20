@@ -8,7 +8,7 @@
 #include <QDesktopWidget>
 
 #include <windows.h>
-#include <TlHelp32.h>
+#include <tlhelp32.h>
 #include <stdio.h>
 #include <string>
 #include "winsock.h"
