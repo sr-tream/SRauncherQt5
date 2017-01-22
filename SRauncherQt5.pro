@@ -48,7 +48,8 @@ FORMS    += srauncher.ui \
     settings.ui \
     group.ui
 
-DISTFILES +=
+DISTFILES += \
+    resource.rc
 
 win32:RC_FILE = resource.rc
 

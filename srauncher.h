@@ -31,9 +31,6 @@ public:
     explicit SRauncher(QWidget *parent = 0);
     ~SRauncher();
 
-private:
-    CGroup *groupMgr; //WTF? Dont work if declarad in end
-
 protected:
     void changeEvent(QEvent *e);
     void closeEvent(QCloseEvent * e);
@@ -78,6 +75,7 @@ private:
     CSettings *sets;
     ServerRename* rename;
     QTimer *timer;
+    CGroup *groupMgr;
     QRegExp rx;
 };
 
