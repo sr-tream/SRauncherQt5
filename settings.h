@@ -39,6 +39,8 @@ private slots:
 
     void on_dial_valueChanged(int value);
 
+    void on_comboBox_2_currentIndexChanged(int index);
+
 private:
     Ui::CSettings *ui;
     QSettings *regset;

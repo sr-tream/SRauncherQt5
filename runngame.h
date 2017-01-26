@@ -29,6 +29,7 @@ public:
     void addLib(QString lib);
     void setWindowMode(bool mode);
     void setWindowSize(QString size);
+    void setWindowTop(bool top);
 
     void reset();
 
@@ -39,6 +40,7 @@ private:
     QList<QString> libs;
     QString size = "640*480";
     bool _winMode = false;
+    bool winTop = false;
 
     static void initialise();
     static void uninitialise();

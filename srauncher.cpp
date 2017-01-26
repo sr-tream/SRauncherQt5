@@ -143,6 +143,7 @@ void SRauncher::on_btnConnect_clicked()
     }
     game->setWindowMode(regset->value("win_mode").toBool());
     game->setWindowSize(sets->getSize());
+    game->setWindowTop(regset->value("win_pos").toBool());
 
     QList<QString> addLibs = inject->enabledLibs();
     foreach (auto lib, addLibs) {

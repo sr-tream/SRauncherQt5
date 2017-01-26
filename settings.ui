@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>250</width>
-    <height>140</height>
+    <width>313</width>
+    <height>142</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,14 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>131</width>
+     <width>191</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Using custom asi loader</string>
@@ -31,9 +36,14 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>151</width>
+     <width>191</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Run game in window mode</string>
@@ -44,7 +54,7 @@
     <rect>
      <x>10</x>
      <y>110</y>
-     <width>141</width>
+     <width>191</width>
      <height>23</height>
     </rect>
    </property>
@@ -58,10 +68,10 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>80</x>
      <y>50</y>
-     <width>141</width>
-     <height>22</height>
+     <width>121</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -204,8 +214,8 @@
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>141</width>
-     <height>22</height>
+     <width>191</width>
+     <height>29</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -228,11 +238,16 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>210</x>
      <y>10</y>
-     <width>81</width>
+     <width>91</width>
      <height>121</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="title">
     <string>Renewal time</string>
@@ -242,7 +257,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>61</width>
+      <width>71</width>
       <height>91</height>
      </rect>
     </property>
@@ -306,6 +321,29 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QComboBox" name="comboBox_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Center</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Top</string>
+    </property>
+   </item>
+  </widget>
  </widget>
  <resources/>
  <connections>
@@ -316,12 +354,44 @@
    <slot>display(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>45</x>
-     <y>175</y>
+     <x>221</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
-     <x>115</x>
-     <y>216</y>
+     <x>221</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbWinMode</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBox_2</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>56</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>56</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbWinMode</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>116</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>117</x>
+     <y>59</y>
     </hint>
    </hints>
   </connection>

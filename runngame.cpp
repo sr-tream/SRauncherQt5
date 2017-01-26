@@ -157,6 +157,11 @@ void CRunGame::setWindowSize(QString size)
     this->size = size;
 }
 
+void CRunGame::setWindowTop(bool top)
+{
+    this->winTop = top;
+}
+
 void CRunGame::winMode(DWORD pId)
 {
     if (!_winMode)
@@ -172,7 +177,9 @@ void CRunGame::winMode(DWORD pId)
     if (rx.indexIn(size) != -1){
         QDesktopWidget *d = QApplication::desktop();
         WriteIntEx(pId, (void*)0x7455C8, (d->width() - rx.cap(1).toShort()) / 2);
-        WriteIntEx(pId, (void*)0x7455C3, (d->height() - rx.cap(2).toShort()) / 2);
+        if (winTop)
+            WriteIntEx(pId, (void*)0x7455C3, 0);
+        else WriteIntEx(pId, (void*)0x7455C3, (d->height() - rx.cap(2).toShort()) / 2);
         memsetEx(pId, (void*)0x61960C, 0x90, 0x14);
         WriteIntEx(pId, (void*)0xC17044, rx.cap(1).toInt());
         WriteIntEx(pId, (void*)0xC17048, rx.cap(2).toInt());
@@ -206,4 +213,5 @@ void CRunGame::reset()
     libs.clear();
     _winMode = false;
     size = "640*480";
+    winTop = false;
 }

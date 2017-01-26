@@ -6,7 +6,7 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui(new Ui::CSettings)
 {
     ui->setupUi(this);
-    this->setFixedSize(250, 140);
+    this->setFixedSize(310, 140);
     this->servers = servers;
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
@@ -34,6 +34,7 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
             }
         }
     }
+    ui->comboBox_2->setCurrentIndex(regset->value("win_pos").toInt());
 }
 
 CSettings::~CSettings()
@@ -66,7 +67,6 @@ void CSettings::on_cbAsiLoader_toggled(bool checked)
 void CSettings::on_cbWinMode_toggled(bool checked)
 {
     regset->setValue("win_mode", checked);
-    ui->comboBox->setEnabled(checked);
 }
 
 void CSettings::on_btnImport_clicked()
@@ -90,4 +90,9 @@ void CSettings::on_comboBox_currentIndexChanged(int index)
 void CSettings::on_dial_valueChanged(int value)
 {
     regset->setValue("time_update", value);
+}
+
+void CSettings::on_comboBox_2_currentIndexChanged(int index)
+{
+    regset->setValue("win_pos", index);
 }
