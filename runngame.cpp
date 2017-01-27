@@ -15,10 +15,16 @@ QString CRunGame::domain2ip(QString domain)
 void CRunGame::Connect(QString nick, QString ip, ushort port)
 {
     char param[128];
-    sprintf( param, "-c -n %s -h %s -p %d",
-             nick.toStdString().c_str(),
-             domain2ip(ip).toStdString().c_str(),
-             port );
+    if (password.isEmpty())
+        sprintf( param, "-c -n %s -h %s -p %d",
+                 nick.toStdString().c_str(),
+                 domain2ip(ip).toStdString().c_str(),
+                 port );
+    else sprintf( param, "-c -n %s -h %s -p %d -z %s",
+                  nick.toStdString().c_str(),
+                  domain2ip(ip).toStdString().c_str(),
+                  port,
+                  password.toStdString().c_str() );
     PROCESS_INFORMATION pi = runGame(param);
     if(pi.hProcess!=NULL){
         winMode(pi.dwProcessId);
@@ -67,6 +73,11 @@ void CRunGame::setGta(QString gta_sa)
 void CRunGame::addLib(QString lib)
 {
     libs.push_back(lib);
+}
+
+void CRunGame::setPassword(QString password)
+{
+    this->password = password;
 }
 
 void CRunGame::initialise( void )
@@ -213,5 +224,6 @@ void CRunGame::reset()
     libs.clear();
     _winMode = false;
     size = "640*480";
+    password = "";
     winTop = false;
 }

@@ -18,6 +18,7 @@
 #include "udpconnect.h"
 #include "settings.h"
 #include "group.h"
+#include "password.h"
 
 namespace Ui {
 class SRauncher;
@@ -65,6 +66,8 @@ private slots:
 
     void on_btnDebug_clicked();
 
+    void on_toolButton_clicked();
+
 private:
     Ui::SRauncher *ui;
     CSampServers *servers;
@@ -76,6 +79,7 @@ private:
     ServerRename* rename;
     QTimer *timer;
     CGroup *groupMgr;
+    Password *pass;
     QRegExp rx;
 };
 

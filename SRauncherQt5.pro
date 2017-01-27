@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     selectlibs.cpp \
     udpconnect.cpp \
     settings.cpp \
-    group.cpp
+    group.cpp \
+    password.cpp
 
 HEADERS  += srauncher.h \
     sampservers.h \
@@ -40,13 +41,15 @@ HEADERS  += srauncher.h \
     selectlibs.h \
     udpconnect.h \
     settings.h \
-    group.h
+    group.h \
+    password.h
 
 FORMS    += srauncher.ui \
     serverrename.ui \
     selectlibs.ui \
     settings.ui \
-    group.ui
+    group.ui \
+    password.ui
 
 DISTFILES += \
     resource.rc

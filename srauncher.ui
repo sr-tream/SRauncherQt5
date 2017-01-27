@@ -164,7 +164,7 @@
      <rect>
       <x>240</x>
       <y>250</y>
-      <width>51</width>
+      <width>81</width>
       <height>16</height>
      </rect>
     </property>
@@ -188,7 +188,7 @@
       <x>300</x>
       <y>30</y>
       <width>141</width>
-      <height>22</height>
+      <height>29</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -240,7 +240,7 @@
       <x>300</x>
       <y>160</y>
       <width>141</width>
-      <height>89</height>
+      <height>96</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -250,6 +250,13 @@
         <widget class="QPushButton" name="btnConnect">
          <property name="text">
           <string>Connect</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButton">
+         <property name="text">
+          <string>...</string>
          </property>
         </widget>
        </item>
@@ -285,7 +292,7 @@
       <x>10</x>
       <y>260</y>
       <width>221</width>
-      <height>134</height>
+      <height>182</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
@@ -551,7 +558,7 @@
       <x>10</x>
       <y>30</y>
       <width>281</width>
-      <height>25</height>
+      <height>29</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -609,7 +616,7 @@
      <x>0</x>
      <y>0</y>
      <width>450</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -634,8 +641,8 @@
      <y>224</y>
     </hint>
     <hint type="destinationlabel">
-     <x>319</x>
-     <y>224</y>
+     <x>321</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>

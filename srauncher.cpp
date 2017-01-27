@@ -21,6 +21,7 @@ SRauncher::SRauncher(QWidget *parent) :
     servers = new CSampServers(ui->edtNick->text(), ui->cbGroup, ui->srvList);
     sets = new CSettings(servers, this);
     ui->cbGroup->setCurrentIndex(regset->value("group_id").toInt());
+    pass = new Password(game, regset, inject, sets, this);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), SLOT(updateServerInfo()));
@@ -60,6 +61,7 @@ void SRauncher::closeEvent(QCloseEvent * e)
         delete udp;
         udp = nullptr;
     }
+    delete pass;
     delete servers;
     delete rename;
     delete inject;
@@ -306,4 +308,11 @@ void SRauncher::on_btnDebug_clicked()
     foreach (auto lib, addLibs)
         game->addLib(lib);
     game->Debug();
+}
+
+void SRauncher::on_toolButton_clicked()
+{
+    pass->setGta(ui->edtGta->text());
+    pass->setIP(ui->edtIp->text());
+    pass->show();
 }

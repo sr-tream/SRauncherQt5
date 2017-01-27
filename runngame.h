@@ -27,6 +27,7 @@ public:
 
     void setGta(QString gta_sa);
     void addLib(QString lib);
+    void setPassword(QString password);
     void setWindowMode(bool mode);
     void setWindowSize(QString size);
     void setWindowTop(bool top);
@@ -39,6 +40,7 @@ private:
     QString gta_sa;
     QList<QString> libs;
     QString size = "640*480";
+    QString password = "";
     bool _winMode = false;
     bool winTop = false;
 
