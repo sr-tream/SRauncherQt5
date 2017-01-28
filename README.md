@@ -5,7 +5,7 @@ For building need Qt5.7 witch MinGW32
 
 Thread on forum (RUS): https://prime-hack.net/threads/srauncher.2249/
 
-![Alt text](https://dl.prime-hack.net/3q68t.png)
+![Alt text](https://dl.prime-hack.net/kf6be.png)
 
 ## Features:
 * Each server remembers "your" nickname.
