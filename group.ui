@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Add group</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -21,6 +21,9 @@
      <width>151</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="locale">
+    <locale language="Russian" country="Russia"/>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -35,12 +38,15 @@
      <x>10</x>
      <y>10</y>
      <width>221</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QLabel" name="txtName">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
       <property name="text">
        <string>Group name:</string>
       </property>

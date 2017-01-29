@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>421</height>
+    <height>466</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -77,6 +77,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="txtNick">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Nick:</string>
        </property>
@@ -87,6 +90,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnSettings">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Settings</string>
        </property>
@@ -124,10 +130,13 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>60</y>
+      <y>63</y>
       <width>141</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
     </property>
     <property name="text">
      <string>Add/move server</string>
@@ -164,9 +173,12 @@
      <rect>
       <x>240</x>
       <y>250</y>
-      <width>81</width>
+      <width>201</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
     </property>
     <property name="text">
      <string>Comment:</string>
@@ -208,32 +220,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="btnRemove">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>90</y>
-      <width>67</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>remove</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnRename">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>90</y>
-      <width>71</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>rename</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -248,6 +234,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QPushButton" name="btnConnect">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="text">
           <string>Connect</string>
          </property>
@@ -266,6 +255,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
         <widget class="QPushButton" name="btnDebug">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="text">
           <string>Debug mode</string>
          </property>
@@ -277,6 +269,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QPushButton" name="btnInject">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="text">
           <string>Additional inject</string>
          </property>
@@ -304,6 +299,9 @@
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="txtPlayers">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Players: </string>
        </property>
@@ -327,6 +325,9 @@
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="txtPing">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Ping: </string>
        </property>
@@ -347,6 +348,9 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="txtTime">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Time: </string>
        </property>
@@ -367,6 +371,9 @@
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="txtWeather">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Weather: </string>
        </property>
@@ -387,6 +394,9 @@
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="txtMap">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Map: </string>
        </property>
@@ -407,6 +417,9 @@
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="txtMode">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>Mode: </string>
        </property>
@@ -427,6 +440,9 @@
      </item>
      <item row="6" column="0">
       <widget class="QLabel" name="txtUrl">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>URL: </string>
        </property>
@@ -569,9 +585,12 @@
       <widget class="QLabel" name="txtGroup">
        <property name="maximumSize">
         <size>
-         <width>35</width>
+         <width>45</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
        </property>
        <property name="text">
         <string>Group:</string>
@@ -579,7 +598,20 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cbGroup"/>
+      <widget class="QComboBox" name="cbGroup">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>16777215</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btnGroupAdd">
@@ -588,6 +620,9 @@
          <width>30</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
        </property>
        <property name="text">
         <string>Add</string>
@@ -602,8 +637,58 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="text">
         <string>remove</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>90</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="btnRemove">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+       <property name="text">
+        <string>remove</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnRename">
+       <property name="maximumSize">
+        <size>
+         <width>90</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
+       <property name="text">
+        <string>rename</string>
        </property>
       </widget>
      </item>
@@ -616,7 +701,7 @@
      <x>0</x>
      <y>0</y>
      <width>450</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="sizePolicy">

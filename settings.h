@@ -45,6 +45,11 @@ private:
     Ui::CSettings *ui;
     QSettings *regset;
     CSampServers* servers;
+
+    uint win_size = 0;
+    uint win_pos = 0;
+
+    void UpdateWinSettings();
 };
 
 #endif // SETTINGS_H

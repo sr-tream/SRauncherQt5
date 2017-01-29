@@ -28,6 +28,9 @@ public:
     void setIP(QString ip);
     void setGta(QString gta);
 
+protected:
+    void changeEvent(QEvent *e);
+
 private slots:
     void on_btnConnect_clicked();
 

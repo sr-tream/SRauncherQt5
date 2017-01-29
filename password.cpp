@@ -23,6 +23,18 @@ Password::~Password()
     delete ui;
 }
 
+void Password::changeEvent(QEvent *e)
+{
+    QDialog::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}
+
 void Password::setIP(QString ip)
 {
     this->ip = ip;

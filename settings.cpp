@@ -10,6 +10,29 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     this->servers = servers;
     regset = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\SAMP",
                            QSettings::NativeFormat);
+    UpdateWinSettings();
+}
+
+CSettings::~CSettings()
+{
+    delete ui;
+}
+
+void CSettings::changeEvent(QEvent *e)
+{
+    QDialog::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        UpdateWinSettings();
+        break;
+    default:
+        break;
+    }
+}
+
+void CSettings::UpdateWinSettings()
+{
     ui->cbAsiLoader->setChecked(regset->value("asi_loader").toBool());
     ui->cbWinMode->setChecked(regset->value("win_mode").toBool());
     ui->comboBox->setEnabled(ui->cbWinMode->isChecked());
@@ -37,25 +60,11 @@ CSettings::CSettings(CSampServers *servers, QWidget *parent) :
     ui->comboBox_2->setCurrentIndex(regset->value("win_pos").toInt());
 }
 
-CSettings::~CSettings()
-{
-    delete ui;
-}
-
-void CSettings::changeEvent(QEvent *e)
-{
-    QDialog::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
-}
 void CSettings::closeEvent(QCloseEvent * e)
 {
     regset->setValue("client_port", ui->edtPort->text());
+    regset->setValue("win_size", win_size);
+    regset->setValue("win_pos", win_pos);
     e->accept();
 }
 
@@ -84,7 +93,7 @@ QString CSettings::getSize()
 
 void CSettings::on_comboBox_currentIndexChanged(int index)
 {
-    regset->setValue("win_size", index);
+    win_size = index;
 }
 
 void CSettings::on_dial_valueChanged(int value)
@@ -94,5 +103,5 @@ void CSettings::on_dial_valueChanged(int value)
 
 void CSettings::on_comboBox_2_currentIndexChanged(int index)
 {
-    regset->setValue("win_pos", index);
+    win_pos = index;
 }

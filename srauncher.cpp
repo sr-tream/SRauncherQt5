@@ -26,6 +26,9 @@ SRauncher::SRauncher(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), SLOT(updateServerInfo()));
     timer->start(regset->value("time_update").toInt());
+
+    translate.load("language_ru");
+    qApp->installTranslator(&translate);
 }
 
 SRauncher::~SRauncher()

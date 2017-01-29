@@ -25,6 +25,9 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QLabel" name="txtDisabled">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
       <property name="text">
        <string>Disabled:</string>
       </property>
@@ -32,6 +35,9 @@
     </item>
     <item>
      <widget class="QLabel" name="txtOnline">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
       <property name="text">
        <string>Enabled:</string>
       </property>

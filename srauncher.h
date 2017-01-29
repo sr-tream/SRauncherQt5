@@ -2,6 +2,7 @@
 #define SRAUNCHER_H
 
 #include <QMainWindow>
+#include <QApplication>
 #include <QListWidgetItem>
 #include <QSettings>
 #include <QMessageBox>
@@ -10,6 +11,7 @@
 #include <QDesktopServices>
 #include <QTextCodec>
 #include <QTimer>
+#include <QTranslator>
 
 #include "sampservers.h"
 #include "serverrename.h"
@@ -36,6 +38,7 @@ protected:
     void changeEvent(QEvent *e);
     void closeEvent(QCloseEvent * e);
 
+    QTranslator translate;
 
 private slots:
     void updateServerInfo();
