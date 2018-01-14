@@ -10,6 +10,7 @@ INPUT(
 ./release/group.o
 ./release/password.o
 ./release/srauncherqt5_plugin_import.o
+./release/qrc_resource.o
 ./release/moc_srauncher.o
 ./release/moc_serverrename.o
 ./release/moc_selectlibs.o

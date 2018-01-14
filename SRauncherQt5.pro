@@ -73,3 +73,6 @@ win32: QMAKE_LFLAGS_RELEASE += -static -static-libstdc++
 INCLUDEPATH += C:/Qt/Qt5.7.1/5.7/Src/qtbase/include
 DEPENDPATH += C:/Qt/Qt5.7.1/5.7/Src/qtbase/include
 
+RESOURCES += \
+    resource.qrc
+

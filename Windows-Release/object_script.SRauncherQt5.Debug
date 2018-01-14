@@ -10,6 +10,7 @@ INPUT(
 ./debug/group.o
 ./debug/password.o
 ./debug/srauncherqt5_plugin_import.o
+./debug/qrc_resource.o
 ./debug/moc_srauncher.o
 ./debug/moc_serverrename.o
 ./debug/moc_selectlibs.o

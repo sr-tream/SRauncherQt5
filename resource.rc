@@ -5,18 +5,18 @@ IDI_ICON1 ICON DISCARDABLE "Icon.ico"
 #define VER_FILEVERSION             1,3,3,7
 #define VER_FILEDESCRIPTION_STR     "The custom launcher for SA:MP"
 #define VER_INTERNALNAME_STR        "SRauncher"
-#define VER_LEGALCOPYRIGHT_STR      "Copyright (C) 2017, Prime-Hack"
+#define VER_LEGALCOPYRIGHT_STR      "Copyright (C) 2018, Prime-Hack"
 #define VER_ORIGINALFILENAME_STR    "SRauncherQt5.exe"
 #define VER_PRODUCTNAME_STR         "SRauncher"
 
 VS_VERSION_INFO VERSIONINFO
 FILEVERSION     VER_FILEVERSION
 BEGIN
-    BLOCK "StringFileInfo"
+	BLOCK "StringFileInfo"
 	BEGIN
-	    BLOCK "040904E4"
+		BLOCK "040904E4"
 		BEGIN
-		    VALUE "FileDescription",    VER_FILEDESCRIPTION_STR
+			VALUE "FileDescription",    VER_FILEDESCRIPTION_STR
 			VALUE "InternalName",       VER_INTERNALNAME_STR
 			VALUE "LegalCopyright",     VER_LEGALCOPYRIGHT_STR
 			VALUE "OriginalFilename",   VER_ORIGINALFILENAME_STR
@@ -24,8 +24,8 @@ BEGIN
 			END
 		END
 
-    BLOCK "VarFileInfo"
+	BLOCK "VarFileInfo"
 	BEGIN
-	    VALUE "Translation", 0x409, 1252
+		VALUE "Translation", 0x409, 1252
 		END
 END

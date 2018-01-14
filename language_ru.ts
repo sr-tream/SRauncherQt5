@@ -244,7 +244,7 @@
     <message>
         <location filename="srauncher.ui" line="184"/>
         <source>Comment:</source>
-        <translation type="unfinished">Комментарий:</translation>
+        <translation>Комментарий:</translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="210"/>
@@ -290,37 +290,37 @@
     <message>
         <location filename="srauncher.ui" line="306"/>
         <source>Players: </source>
-        <translation>Игроки:</translation>
+        <translation>Игроки: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="332"/>
         <source>Ping: </source>
-        <translation>Пинг:</translation>
+        <translation>Пинг: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="355"/>
         <source>Time: </source>
-        <translation>Время:</translation>
+        <translation>Время: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="378"/>
         <source>Weather: </source>
-        <translation>Погода:</translation>
+        <translation>Погода: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="401"/>
         <source>Map: </source>
-        <translation>Карта:</translation>
+        <translation>Карта: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="424"/>
         <source>Mode: </source>
-        <translation>Режим:</translation>
+        <translation>Режим: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="447"/>
         <source>URL: </source>
-        <translation>Сайт:</translation>
+        <translation>Сайт: </translation>
     </message>
     <message>
         <location filename="srauncher.ui" line="549"/>

@@ -37,6 +37,10 @@
   <property name="windowTitle">
    <string>SRauncher</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/Icon.ico</normaloff>:/Icon.ico</iconset>
+  </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
@@ -71,7 +75,7 @@
       <x>9</x>
       <y>-1</y>
       <width>431</width>
-      <height>31</height>
+      <height>34</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -148,7 +152,7 @@
       <x>300</x>
       <y>130</y>
       <width>141</width>
-      <height>31</height>
+      <height>32</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -200,7 +204,7 @@
       <x>300</x>
       <y>30</y>
       <width>141</width>
-      <height>29</height>
+      <height>32</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -226,7 +230,7 @@
       <x>300</x>
       <y>160</y>
       <width>141</width>
-      <height>96</height>
+      <height>116</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -574,7 +578,7 @@
       <x>10</x>
       <y>30</y>
       <width>281</width>
-      <height>29</height>
+      <height>34</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -653,7 +657,7 @@
       <x>300</x>
       <y>90</y>
       <width>141</width>
-      <height>31</height>
+      <height>34</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -701,7 +705,7 @@
      <x>0</x>
      <y>0</y>
      <width>450</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -713,7 +717,9 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>srvList</sender>

@@ -106,6 +106,9 @@ public:
         SRauncher->setMinimumSize(QSize(0, 0));
         SRauncher->setMaximumSize(QSize(10000, 111100));
         SRauncher->setBaseSize(QSize(418, 370));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        SRauncher->setWindowIcon(icon);
         SRauncher->setLayoutDirection(Qt::LeftToRight);
         centralWidget = new QWidget(SRauncher);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -116,7 +119,7 @@ public:
         centralWidget->setLayoutDirection(Qt::LeftToRight);
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(9, -1, 431, 31));
+        horizontalLayoutWidget->setGeometry(QRect(9, -1, 431, 34));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -154,7 +157,7 @@ public:
         btnAddSrv->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         formLayoutWidget = new QWidget(centralWidget);
         formLayoutWidget->setObjectName(QStringLiteral("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(300, 130, 141, 31));
+        formLayoutWidget->setGeometry(QRect(300, 130, 141, 32));
         formLayout = new QFormLayout(formLayoutWidget);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -179,7 +182,7 @@ public:
         edtComment->setGeometry(QRect(240, 270, 201, 123));
         horizontalLayoutWidget_2 = new QWidget(centralWidget);
         horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(300, 30, 141, 29));
+        horizontalLayoutWidget_2->setGeometry(QRect(300, 30, 141, 32));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -197,7 +200,7 @@ public:
 
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(300, 160, 141, 96));
+        layoutWidget->setGeometry(QRect(300, 160, 141, 116));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -381,7 +384,7 @@ public:
 
         horizontalLayoutWidget_3 = new QWidget(centralWidget);
         horizontalLayoutWidget_3->setObjectName(QStringLiteral("horizontalLayoutWidget_3"));
-        horizontalLayoutWidget_3->setGeometry(QRect(10, 30, 281, 29));
+        horizontalLayoutWidget_3->setGeometry(QRect(10, 30, 281, 34));
         horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_3);
         horizontalLayout_5->setSpacing(2);
         horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -417,7 +420,7 @@ public:
 
         horizontalLayoutWidget_4 = new QWidget(centralWidget);
         horizontalLayoutWidget_4->setObjectName(QStringLiteral("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(300, 90, 141, 31));
+        horizontalLayoutWidget_4->setGeometry(QRect(300, 90, 141, 34));
         horizontalLayout_7 = new QHBoxLayout(horizontalLayoutWidget_4);
         horizontalLayout_7->setSpacing(2);
         horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
@@ -440,7 +443,7 @@ public:
         SRauncher->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(SRauncher);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 450, 22));
+        menuBar->setGeometry(QRect(0, 0, 450, 28));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
