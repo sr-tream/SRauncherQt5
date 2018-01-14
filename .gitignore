@@ -1,3 +1,4 @@
 *.user
 *.user.*
 Windows-Release/
+Windows_shared-Release/
