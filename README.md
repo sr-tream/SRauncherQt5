@@ -9,7 +9,7 @@ Thread on forum (RUS): https://prime-hack.net/threads/srauncher.2249/
 
 ## Features:
 * Each server remembers "your" nickname.
-* You can use third-party samp.dll and gta_sa.exe for each server
+* You can use third-party gta_sa.exe for each server
 * You can rename the server
 * You can leave comments to the Registry-servers
 * It has built-asi-loader
