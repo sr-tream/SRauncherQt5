@@ -4,244 +4,259 @@
 
 CUdpConnect::CUdpConnect(QListWidgetItem *item, QString group, ushort rPort, QObject *parent) : QObject(parent)
 {
-    this->item = item;
-    this->group = group;
-    this->rPort = rPort;
-    auto srv = CSampServers::FindServer(item->text(), group);
-    ip = CRunGame::domain2ip(srv.ip);
-    port = QString::number(srv.port);
+	this->item = item;
+	this->group = group;
+	this->rPort = rPort;
+	auto srv = CSampServers::FindServer(item->text(), group);
+	ip = CRunGame::domain2ip(srv.ip);
+	port = QString::number(srv.port);
 
-    socket = new QUdpSocket(this);
-    socket->bind(rPort);
-    QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
+	socket = new QUdpSocket(this);
+	socket->bind(rPort);
+	QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
+
+	sends = 0;
+	recived = 0;
 }
 
 CUdpConnect::~CUdpConnect()
 {
-    QObject::disconnect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
-    socket->close();
-    delete socket;
+	QObject::disconnect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
+	socket->close();
+	delete socket;
 }
 
 void CUdpConnect::Send(QByteArray data)
 {
-    socket->writeDatagram(data, QHostAddress(ip), port.toShort());
-    time_connect = QTime::currentTime().msecsSinceStartOfDay();
+	socket->writeDatagram(data, QHostAddress(ip), port.toShort());
+	time_connect = QTime::currentTime().msecsSinceStartOfDay();
+	sends++;
 }
 
 void CUdpConnect::readPendingDatagrams()
 {
-    QByteArray buffer;
-    buffer.resize(socket->pendingDatagramSize());
+	QByteArray buffer;
+	buffer.resize(socket->pendingDatagramSize());
 
-    QHostAddress sender;
-    quint16 senderPort;
+	QHostAddress sender;
+	quint16 senderPort;
 
-    socket->readDatagram(buffer.data(), buffer.size(),
-                             &sender, &senderPort);
+	socket->readDatagram(buffer.data(), buffer.size(),
+							 &sender, &senderPort);
+
+	QString _ip;
+	for (int i = 4; i < 8; ++i)
+		_ip += QString::number((unsigned char)buffer.at(i)) + (i != 7 ? "." : "");
+
+	if (ip != _ip) // It answer from other server. Many ping?
+		return;
+
+	if (recived > sends) // anti-flood protect
+		return;
+	recived++;
 
 
-    if (ping != nullptr)
-        ping->setText(QString::number(QTime::currentTime().msecsSinceStartOfDay() - time_connect));
-    if (buffer[10] == 'i'){ // Info
-        buffer[11]; // Password
-        uint offset = 12;
+	if (ping != nullptr)
+		ping->setText(QString::number(QTime::currentTime().msecsSinceStartOfDay() - time_connect));
+	if (buffer[10] == 'i'){ // Info
+		buffer[11]; // Password
+		uint offset = 12;
 
-        ushort curplayers = read<ushort>(buffer, offset);
-        ushort maxplayers = read<ushort>(buffer, offset);
-        if (players != nullptr)
-            players->setText(QString::number(curplayers) + " of " +
-                         QString::number(maxplayers));
+		ushort curplayers = read<ushort>(buffer, offset);
+		ushort maxplayers = read<ushort>(buffer, offset);
+		if (players != nullptr)
+			players->setText(QString::number(curplayers) + " of " +
+						 QString::number(maxplayers));
 
-        QString name = read<QString>(buffer, offset);
-        auto srv = CSampServers::FindServer(item->text(), group);
-        if (item->text() == QString(srv.ip + ":" + QString::number(srv.port))
-            && srv.name == QString(srv.ip + ":" + QString::number(srv.port))){
+		QString name = read<QString>(buffer, offset);
+		auto srv = CSampServers::FindServer(item->text(), group);
+		if (item->text() == QString(srv.ip + ":" + QString::number(srv.port))
+			&& srv.name == QString(srv.ip + ":" + QString::number(srv.port))){
 
-            foreach (auto it, g_SrvList)
-                if (it.name == name && it.group == group)
-                    name += "#double";
-            srv.name = name;
-            g_SrvList[name] = srv;
-            g_SrvList.remove(QString(srv.ip + ":" + QString::number(srv.port)));
-            item->setText(name);
-        }
-        if (mode != nullptr)
-            mode->setText(read<QString>(buffer, offset));
-        if (lng != nullptr)
-            lng->setText(read<QString>(buffer, offset));
-    }
-    else if (buffer[10] == 'r'){ // Rules
-        uint offset = 11;
-        uint rule_count = read<ushort>(buffer, offset);
+			foreach (auto it, g_SrvList)
+				if (it.name == name && it.group == group)
+					name += "#double";
+			srv.name = name;
+			g_SrvList[name] = srv;
+			g_SrvList.remove(QString(srv.ip + ":" + QString::number(srv.port)));
+			item->setText(name);
+		}
+		if (mode != nullptr)
+			mode->setText(read<QString>(buffer, offset));
+		if (lng != nullptr)
+			lng->setText(read<QString>(buffer, offset));
+	}
+	else if (buffer[10] == 'r'){ // Rules
+		uint offset = 11;
+		uint rule_count = read<ushort>(buffer, offset);
 
-        for (int i = 0; i < rule_count; ++i){
-            QString rule = readLimited(buffer, offset);
-            QString value = readLimited(buffer, offset);
+		for (int i = 0; i < rule_count; ++i){
+			QString rule = readLimited(buffer, offset);
+			QString value = readLimited(buffer, offset);
 
-            if (rule == "worldtime" && time != nullptr)
-                time->setText(value);
-            else if (rule == "weather" && weather != nullptr)
-                weather->setText(value);
-            else if (rule == "mapname" && map != nullptr)
-                map->setText(value);
-            else if (rule == "weburl" && url != nullptr)
-                url->setText("<a href=\"http://" + value + "\">" + value + "</a>");
-        }
-    }
+			if (rule == "worldtime" && time != nullptr)
+				time->setText(value);
+			else if (rule == "weather" && weather != nullptr)
+				weather->setText(value);
+			else if (rule == "mapname" && map != nullptr)
+				map->setText(value);
+			else if (rule == "weburl" && url != nullptr)
+				url->setText("<a href=\"http://" + value + "\">" + value + "</a>");
+		}
+	}
 }
 
 void CUdpConnect::requestPing(bool changedServer)
 {
-    QByteArray data;
-    data.append("SAMP");
-    QRegExp rx(R"((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}))");
-    if (rx.indexIn(ip) != -1){
-        data.push_back((char)rx.cap(1).toShort());
-        data.push_back((char)rx.cap(2).toShort());
-        data.push_back((char)rx.cap(3).toShort());
-        data.push_back((char)rx.cap(4).toShort());
-    }
-    byteValue<uint16_t> _port;
-    _port.value = port.toShort();
-    data.push_back(_port.bytes[0]);
-    data.push_back(_port.bytes[1]);
-    data.push_back(QString("p" + QString::number(rPort)).toStdString().c_str());
-    Send(data);
-    if (ping != nullptr && changedServer)
-        ping->setText("");
+	QByteArray data;
+	data.append("SAMP");
+	QRegExp rx(R"((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}))");
+	if (rx.indexIn(ip) != -1){
+		data.push_back((char)rx.cap(1).toShort());
+		data.push_back((char)rx.cap(2).toShort());
+		data.push_back((char)rx.cap(3).toShort());
+		data.push_back((char)rx.cap(4).toShort());
+	}
+	byteValue<uint16_t> _port;
+	_port.value = port.toShort();
+	data.push_back(_port.bytes[0]);
+	data.push_back(_port.bytes[1]);
+	data.push_back(QString("p" + QString::number(rPort)).toStdString().c_str());
+	Send(data);
+	if (ping != nullptr && changedServer)
+		ping->setText("");
 }
 
 void CUdpConnect::requestInfo(bool changedServer)
 {
-    QByteArray data = CreatePacket("i");
-    Send(data);
-    if (changedServer){
-        if (players != nullptr)
-            players->setText("");
-        if (mode != nullptr)
-            mode->setText("");
-        if (lng != nullptr)
-            lng->setText("");
-    }
+	QByteArray data = CreatePacket("i");
+	Send(data);
+	if (changedServer){
+		if (players != nullptr)
+			players->setText("");
+		if (mode != nullptr)
+			mode->setText("");
+		if (lng != nullptr)
+			lng->setText("");
+	}
 }
 
 void CUdpConnect::requestRule(bool changedServer)
 {
-    QByteArray data = CreatePacket("r");
-    Send(data);
-    if (changedServer){
-        if (time != nullptr)
-            time->setText("");
-        if (map != nullptr)
-            map->setText("");
-        if (weather != nullptr)
-            weather->setText("");
-        if (url != nullptr)
-            url->setText("");
-    }
+	QByteArray data = CreatePacket("r");
+	Send(data);
+	if (changedServer){
+		if (time != nullptr)
+			time->setText("");
+		if (map != nullptr)
+			map->setText("");
+		if (weather != nullptr)
+			weather->setText("");
+		if (url != nullptr)
+			url->setText("");
+	}
 }
 
 void CUdpConnect::setPlayers(QLabel *label)
 {
-    players = label;
+	players = label;
 }
 
 void CUdpConnect::setPing(QLabel *label)
 {
-    ping = label;
+	ping = label;
 }
 
 void CUdpConnect::setTime(QLabel *label)
 {
-    time = label;
+	time = label;
 }
 
 void CUdpConnect::setWeather(QLabel *label)
 {
-    weather = label;
+	weather = label;
 }
 
 void CUdpConnect::setLng(QLabel *label)
 {
-    lng = label;
+	lng = label;
 }
 
 void CUdpConnect::setMode(QLabel *label)
 {
-    mode = label;
+	mode = label;
 }
 
 void CUdpConnect::setUrl(QLabel *label)
 {
-    url = label;
+	url = label;
 }
 
 void CUdpConnect::setMap(QLabel *label)
 {
-    map = label;
+	map = label;
 }
 
 QByteArray CUdpConnect::CreatePacket(QString payLoad)
 {
-    QByteArray data;
-    data.append("SAMP");
-    QRegExp rx(R"((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}))");
-    CRunGame rg;
-    if (rx.indexIn(rg.domain2ip(ip)) != -1){
-        data.push_back((char)rx.cap(1).toShort());
-        data.push_back((char)rx.cap(2).toShort());
-        data.push_back((char)rx.cap(3).toShort());
-        data.push_back((char)rx.cap(4).toShort());
-    }
-    byteValue<uint16_t> _port;
-    _port.value = port.toShort();
-    data.push_back(_port.bytes[0]);
-    data.push_back(_port.bytes[1]);
-    data.push_back(payLoad.toStdString().c_str());
-    return data;
+	QByteArray data;
+	data.append("SAMP");
+	QRegExp rx(R"((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}))");
+	CRunGame rg;
+	if (rx.indexIn(rg.domain2ip(ip)) != -1){
+		data.push_back((char)rx.cap(1).toShort());
+		data.push_back((char)rx.cap(2).toShort());
+		data.push_back((char)rx.cap(3).toShort());
+		data.push_back((char)rx.cap(4).toShort());
+	}
+	byteValue<uint16_t> _port;
+	_port.value = port.toShort();
+	data.push_back(_port.bytes[0]);
+	data.push_back(_port.bytes[1]);
+	data.push_back(payLoad.toStdString().c_str());
+	return data;
 }
 
 template<typename T> inline
 T read::read(QByteArray &array, uint &offset)
 {
-    byteValue<T> v;
-    for (int i = 0; i < sizeof(T); ++i){
-        v.bytes[i] = array[offset + i];
-    }
-    offset += sizeof(T);
-    return v.value;
+	byteValue<T> v;
+	for (int i = 0; i < sizeof(T); ++i){
+		v.bytes[i] = array[offset + i];
+	}
+	offset += sizeof(T);
+	return v.value;
 }
 template<> inline
 QString read::read(QByteArray &array, uint &offset)
 {
-    byteValue<uint> v;
-    v.bytes[0] = array[offset++];
-    v.bytes[1] = array[offset++];
-    v.bytes[2] = array[offset++];
-    v.bytes[3] = array[offset++];
+	byteValue<uint> v;
+	v.bytes[0] = array[offset++];
+	v.bytes[1] = array[offset++];
+	v.bytes[2] = array[offset++];
+	v.bytes[3] = array[offset++];
 
-    char *buf = new char[v.value + 1];
-    for (int i = 0; i < v.value; ++i)
-        buf[i] = array[offset + i];
-    buf[v.value] = 0;
-    offset += v.value;
-    QTextCodec *codec = QTextCodec::codecForName("cp1251");
-    QString ret = codec->toUnicode(buf);
-    delete[] buf;
-    return ret;
+	char *buf = new char[v.value + 1];
+	for (int i = 0; i < v.value; ++i)
+		buf[i] = array[offset + i];
+	buf[v.value] = 0;
+	offset += v.value;
+	QTextCodec *codec = QTextCodec::codecForName("cp1251");
+	QString ret = codec->toUnicode(buf);
+	delete[] buf;
+	return ret;
 }
 QString CUdpConnect::readLimited(QByteArray &array, uint &offset)
 {
-    int len = array[offset++];
+	int len = array[offset++];
 
-    char *buf = new char[len + 1];
-    for (int i = 0; i < len; ++i)
-        buf[i] = array[offset + i];
-    buf[len] = 0;
-    offset += len;
-    QTextCodec *codec = QTextCodec::codecForName("cp1251");
-    QString ret = codec->toUnicode(buf);
-    delete[] buf;
-    return ret;
+	char *buf = new char[len + 1];
+	for (int i = 0; i < len; ++i)
+		buf[i] = array[offset + i];
+	buf[len] = 0;
+	offset += len;
+	QTextCodec *codec = QTextCodec::codecForName("cp1251");
+	QString ret = codec->toUnicode(buf);
+	delete[] buf;
+	return ret;
 }
