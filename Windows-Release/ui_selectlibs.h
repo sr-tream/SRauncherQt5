@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'selectlibs.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -84,9 +84,9 @@ public:
 
     void retranslateUi(QDialog *SelectLibs)
     {
-        SelectLibs->setWindowTitle(QApplication::translate("SelectLibs", "Additional inject", Q_NULLPTR));
-        txtDisabled->setText(QApplication::translate("SelectLibs", "Disabled:", Q_NULLPTR));
-        txtOnline->setText(QApplication::translate("SelectLibs", "Enabled:", Q_NULLPTR));
+        SelectLibs->setWindowTitle(QApplication::translate("SelectLibs", "Additional inject", nullptr));
+        txtDisabled->setText(QApplication::translate("SelectLibs", "Disabled:", nullptr));
+        txtOnline->setText(QApplication::translate("SelectLibs", "Enabled:", nullptr));
     } // retranslateUi
 
 };

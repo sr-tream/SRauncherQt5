@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'settings.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -66,6 +66,31 @@ public:
         btnImport->setGeometry(QRect(10, 110, 191, 23));
         btnImport->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         comboBox = new QComboBox(CSettings);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setEnabled(false);
         comboBox->setGeometry(QRect(80, 50, 121, 21));
@@ -124,6 +149,8 @@ public:
         verticalLayout->addWidget(lcdNumber);
 
         comboBox_2 = new QComboBox(CSettings);
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
         comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
         comboBox_2->setEnabled(false);
         comboBox_2->setGeometry(QRect(10, 50, 71, 21));
@@ -141,46 +168,42 @@ public:
 
     void retranslateUi(QDialog *CSettings)
     {
-        CSettings->setWindowTitle(QApplication::translate("CSettings", "Settings", Q_NULLPTR));
-        cbAsiLoader->setText(QApplication::translate("CSettings", "Using custom asi loader", Q_NULLPTR));
-        cbWinMode->setText(QApplication::translate("CSettings", "Run game in window mode", Q_NULLPTR));
-        btnImport->setText(QApplication::translate("CSettings", "Import servers", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("CSettings", "640*360", Q_NULLPTR)
-         << QApplication::translate("CSettings", "640*480", Q_NULLPTR)
-         << QApplication::translate("CSettings", "800*480", Q_NULLPTR)
-         << QApplication::translate("CSettings", "800*600", Q_NULLPTR)
-         << QApplication::translate("CSettings", "848*480", Q_NULLPTR)
-         << QApplication::translate("CSettings", "960*540", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1024*600", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1024*768", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1152*864", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1200*600", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1280*720", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1280*768", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1280*1024", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1366*768", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1440*900", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1400*1050", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1536*960", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1536*1024", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1600*900", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1600*1024", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1600*1200", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1680*1050", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1920*1080", Q_NULLPTR)
-         << QApplication::translate("CSettings", "1920*1200", Q_NULLPTR)
-         << QApplication::translate("CSettings", "2048*1080", Q_NULLPTR)
-        );
-        txtPort->setText(QApplication::translate("CSettings", "Local port:", Q_NULLPTR));
-        edtPort->setText(QApplication::translate("CSettings", "1337", Q_NULLPTR));
-        groupBox->setTitle(QApplication::translate("CSettings", "Renewal time", Q_NULLPTR));
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
-         << QApplication::translate("CSettings", "Center", Q_NULLPTR)
-         << QApplication::translate("CSettings", "Top", Q_NULLPTR)
-        );
+        CSettings->setWindowTitle(QApplication::translate("CSettings", "Settings", nullptr));
+        cbAsiLoader->setText(QApplication::translate("CSettings", "Using custom asi loader", nullptr));
+        cbWinMode->setText(QApplication::translate("CSettings", "Run game in window mode", nullptr));
+        btnImport->setText(QApplication::translate("CSettings", "Import servers", nullptr));
+        comboBox->setItemText(0, QApplication::translate("CSettings", "640*360", nullptr));
+        comboBox->setItemText(1, QApplication::translate("CSettings", "640*480", nullptr));
+        comboBox->setItemText(2, QApplication::translate("CSettings", "800*480", nullptr));
+        comboBox->setItemText(3, QApplication::translate("CSettings", "800*600", nullptr));
+        comboBox->setItemText(4, QApplication::translate("CSettings", "848*480", nullptr));
+        comboBox->setItemText(5, QApplication::translate("CSettings", "960*540", nullptr));
+        comboBox->setItemText(6, QApplication::translate("CSettings", "1024*600", nullptr));
+        comboBox->setItemText(7, QApplication::translate("CSettings", "1024*768", nullptr));
+        comboBox->setItemText(8, QApplication::translate("CSettings", "1152*864", nullptr));
+        comboBox->setItemText(9, QApplication::translate("CSettings", "1200*600", nullptr));
+        comboBox->setItemText(10, QApplication::translate("CSettings", "1280*720", nullptr));
+        comboBox->setItemText(11, QApplication::translate("CSettings", "1280*768", nullptr));
+        comboBox->setItemText(12, QApplication::translate("CSettings", "1280*1024", nullptr));
+        comboBox->setItemText(13, QApplication::translate("CSettings", "1366*768", nullptr));
+        comboBox->setItemText(14, QApplication::translate("CSettings", "1440*900", nullptr));
+        comboBox->setItemText(15, QApplication::translate("CSettings", "1400*1050", nullptr));
+        comboBox->setItemText(16, QApplication::translate("CSettings", "1536*960", nullptr));
+        comboBox->setItemText(17, QApplication::translate("CSettings", "1536*1024", nullptr));
+        comboBox->setItemText(18, QApplication::translate("CSettings", "1600*900", nullptr));
+        comboBox->setItemText(19, QApplication::translate("CSettings", "1600*1024", nullptr));
+        comboBox->setItemText(20, QApplication::translate("CSettings", "1600*1200", nullptr));
+        comboBox->setItemText(21, QApplication::translate("CSettings", "1680*1050", nullptr));
+        comboBox->setItemText(22, QApplication::translate("CSettings", "1920*1080", nullptr));
+        comboBox->setItemText(23, QApplication::translate("CSettings", "1920*1200", nullptr));
+        comboBox->setItemText(24, QApplication::translate("CSettings", "2048*1080", nullptr));
+
+        txtPort->setText(QApplication::translate("CSettings", "Local port:", nullptr));
+        edtPort->setText(QApplication::translate("CSettings", "1337", nullptr));
+        groupBox->setTitle(QApplication::translate("CSettings", "Renewal time", nullptr));
+        comboBox_2->setItemText(0, QApplication::translate("CSettings", "Center", nullptr));
+        comboBox_2->setItemText(1, QApplication::translate("CSettings", "Top", nullptr));
+
     } // retranslateUi
 
 };

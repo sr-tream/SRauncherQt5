@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'password.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -70,9 +70,9 @@ public:
 
     void retranslateUi(QDialog *Password)
     {
-        Password->setWindowTitle(QApplication::translate("Password", "Advanced connect", Q_NULLPTR));
-        txtPass->setText(QApplication::translate("Password", "Password:", Q_NULLPTR));
-        btnConnect->setText(QApplication::translate("Password", "Connect", Q_NULLPTR));
+        Password->setWindowTitle(QApplication::translate("Password", "Advanced connect", nullptr));
+        txtPass->setText(QApplication::translate("Password", "Password:", nullptr));
+        btnConnect->setText(QApplication::translate("Password", "Connect", nullptr));
     } // retranslateUi
 
 };

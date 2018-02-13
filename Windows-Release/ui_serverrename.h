@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'serverrename.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -70,9 +70,9 @@ public:
 
     void retranslateUi(QDialog *ServerRename)
     {
-        ServerRename->setWindowTitle(QApplication::translate("ServerRename", "Rename", Q_NULLPTR));
-        label->setText(QApplication::translate("ServerRename", "Server name:", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("ServerRename", "Apply", Q_NULLPTR));
+        ServerRename->setWindowTitle(QApplication::translate("ServerRename", "Rename", nullptr));
+        label->setText(QApplication::translate("ServerRename", "Server name:", nullptr));
+        pushButton->setText(QApplication::translate("ServerRename", "Apply", nullptr));
     } // retranslateUi
 
 };

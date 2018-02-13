@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'group.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -71,8 +71,8 @@ public:
 
     void retranslateUi(QDialog *CGroup)
     {
-        CGroup->setWindowTitle(QApplication::translate("CGroup", "Add group", Q_NULLPTR));
-        txtName->setText(QApplication::translate("CGroup", "Group name:", Q_NULLPTR));
+        CGroup->setWindowTitle(QApplication::translate("CGroup", "Add group", nullptr));
+        txtName->setText(QApplication::translate("CGroup", "Group name:", nullptr));
     } // retranslateUi
 
 };

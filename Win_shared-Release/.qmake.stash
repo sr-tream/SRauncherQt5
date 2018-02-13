@@ -1,0 +1,19 @@
+QMAKE_CXX.INCDIRS = \
+    /usr/lib/mxe/usr/lib/gcc/i686-w64-mingw32.shared/5.4.0/include/c++ \
+    /usr/lib/mxe/usr/lib/gcc/i686-w64-mingw32.shared/5.4.0/include/c++/i686-w64-mingw32.shared \
+    /usr/lib/mxe/usr/lib/gcc/i686-w64-mingw32.shared/5.4.0/include/c++/backward \
+    /usr/lib/mxe/usr/lib/gcc/i686-w64-mingw32.shared/5.4.0/include \
+    /usr/lib/mxe/usr/lib/gcc/i686-w64-mingw32.shared/5.4.0/include-fixed \
+    /usr/lib/mxe/usr/i686-w64-mingw32.shared/include
+QMAKE_CXX.LIBDIRS = \
+    /usr/lib/mxe/usr/lib/gcc/i686-w64-mingw32.shared/5.4.0 \
+    /usr/lib/mxe/usr/i686-w64-mingw32.shared/lib
+QMAKE_CXX.QT_COMPILER_STDCXX = 199711L
+QMAKE_CXX.QMAKE_GCC_MAJOR_VERSION = 5
+QMAKE_CXX.QMAKE_GCC_MINOR_VERSION = 4
+QMAKE_CXX.QMAKE_GCC_PATCH_VERSION = 0
+QMAKE_CXX.COMPILER_MACROS = \
+    QT_COMPILER_STDCXX \
+    QMAKE_GCC_MAJOR_VERSION \
+    QMAKE_GCC_MINOR_VERSION \
+    QMAKE_GCC_PATCH_VERSION

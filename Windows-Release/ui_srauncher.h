@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'srauncher.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -459,40 +459,40 @@ public:
 
     void retranslateUi(QMainWindow *SRauncher)
     {
-        SRauncher->setWindowTitle(QApplication::translate("SRauncher", "SRauncher", Q_NULLPTR));
-        txtNick->setText(QApplication::translate("SRauncher", "Nick:", Q_NULLPTR));
-        btnSettings->setText(QApplication::translate("SRauncher", "Settings", Q_NULLPTR));
-        btnAddSrv->setText(QApplication::translate("SRauncher", "Add/move server", Q_NULLPTR));
-        txtGta->setText(QApplication::translate("SRauncher", "gta_sa:", Q_NULLPTR));
-        edtGta->setText(QApplication::translate("SRauncher", "gta_sa.exe", Q_NULLPTR));
-        txtComment->setText(QApplication::translate("SRauncher", "Comment:", Q_NULLPTR));
-        txtIp->setText(QApplication::translate("SRauncher", "IP:", Q_NULLPTR));
-        edtIp->setText(QApplication::translate("SRauncher", "127.0.0.1:7777", Q_NULLPTR));
-        btnConnect->setText(QApplication::translate("SRauncher", "Connect", Q_NULLPTR));
-        toolButton->setText(QApplication::translate("SRauncher", "...", Q_NULLPTR));
-        btnDebug->setText(QApplication::translate("SRauncher", "Debug mode", Q_NULLPTR));
-        btnInject->setText(QApplication::translate("SRauncher", "Additional inject", Q_NULLPTR));
-        txtPlayers->setText(QApplication::translate("SRauncher", "Players: ", Q_NULLPTR));
+        SRauncher->setWindowTitle(QApplication::translate("SRauncher", "SRauncher", nullptr));
+        txtNick->setText(QApplication::translate("SRauncher", "Nick:", nullptr));
+        btnSettings->setText(QApplication::translate("SRauncher", "Settings", nullptr));
+        btnAddSrv->setText(QApplication::translate("SRauncher", "Add/move server", nullptr));
+        txtGta->setText(QApplication::translate("SRauncher", "gta_sa:", nullptr));
+        edtGta->setText(QApplication::translate("SRauncher", "gta_sa.exe", nullptr));
+        txtComment->setText(QApplication::translate("SRauncher", "Comment:", nullptr));
+        txtIp->setText(QApplication::translate("SRauncher", "IP:", nullptr));
+        edtIp->setText(QApplication::translate("SRauncher", "127.0.0.1:7777", nullptr));
+        btnConnect->setText(QApplication::translate("SRauncher", "Connect", nullptr));
+        toolButton->setText(QApplication::translate("SRauncher", "...", nullptr));
+        btnDebug->setText(QApplication::translate("SRauncher", "Debug mode", nullptr));
+        btnInject->setText(QApplication::translate("SRauncher", "Additional inject", nullptr));
+        txtPlayers->setText(QApplication::translate("SRauncher", "Players: ", nullptr));
         tsPlayers->setText(QString());
-        txtPing->setText(QApplication::translate("SRauncher", "Ping: ", Q_NULLPTR));
+        txtPing->setText(QApplication::translate("SRauncher", "Ping: ", nullptr));
         tsPing->setText(QString());
-        txtTime->setText(QApplication::translate("SRauncher", "Time: ", Q_NULLPTR));
+        txtTime->setText(QApplication::translate("SRauncher", "Time: ", nullptr));
         tsTime->setText(QString());
-        txtWeather->setText(QApplication::translate("SRauncher", "Weather: ", Q_NULLPTR));
+        txtWeather->setText(QApplication::translate("SRauncher", "Weather: ", nullptr));
         tsWeather->setText(QString());
-        txtMap->setText(QApplication::translate("SRauncher", "Map: ", Q_NULLPTR));
+        txtMap->setText(QApplication::translate("SRauncher", "Map: ", nullptr));
         tsMap->setText(QString());
-        txtMode->setText(QApplication::translate("SRauncher", "Mode: ", Q_NULLPTR));
+        txtMode->setText(QApplication::translate("SRauncher", "Mode: ", nullptr));
         tsMode->setText(QString());
-        txtUrl->setText(QApplication::translate("SRauncher", "URL: ", Q_NULLPTR));
+        txtUrl->setText(QApplication::translate("SRauncher", "URL: ", nullptr));
         tsUrl->setText(QString());
-        txtLng->setText(QApplication::translate("SRauncher", "Language:", Q_NULLPTR));
+        txtLng->setText(QApplication::translate("SRauncher", "Language:", nullptr));
         tsLng->setText(QString());
-        txtGroup->setText(QApplication::translate("SRauncher", "Group:", Q_NULLPTR));
-        btnGroupAdd->setText(QApplication::translate("SRauncher", "Add", Q_NULLPTR));
-        btnGroupRemove->setText(QApplication::translate("SRauncher", "remove", Q_NULLPTR));
-        btnRemove->setText(QApplication::translate("SRauncher", "remove", Q_NULLPTR));
-        btnRename->setText(QApplication::translate("SRauncher", "rename", Q_NULLPTR));
+        txtGroup->setText(QApplication::translate("SRauncher", "Group:", nullptr));
+        btnGroupAdd->setText(QApplication::translate("SRauncher", "Add", nullptr));
+        btnGroupRemove->setText(QApplication::translate("SRauncher", "remove", nullptr));
+        btnRemove->setText(QApplication::translate("SRauncher", "remove", nullptr));
+        btnRename->setText(QApplication::translate("SRauncher", "rename", nullptr));
     } // retranslateUi
 
 };
