@@ -17,14 +17,16 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
@@ -36,35 +38,46 @@ class Ui_SRauncher
 {
 public:
     QWidget *centralWidget;
-    QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout_4;
+    QVBoxLayout *verticalLayout_5;
+    QVBoxLayout *verticalLayout_3;
+    QGridLayout *gridLayout_5;
     QLabel *txtNick;
     QLineEdit *edtNick;
     QPushButton *btnSettings;
+    QHBoxLayout *horizontalLayout_8;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *txtGroup;
+    QComboBox *cbGroup;
+    QPushButton *btnGroupAdd;
+    QPushButton *btnGroupRemove;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *btnInject;
+    QHBoxLayout *horizontalLayout_3;
     QListWidget *srvList;
-    QFrame *line;
-    QPushButton *btnAddSrv;
-    QWidget *formLayoutWidget;
-    QFormLayout *formLayout;
-    QLabel *txtGta;
-    QLineEdit *edtGta;
-    QLabel *txtComment;
-    QTextEdit *edtComment;
-    QWidget *horizontalLayoutWidget_2;
+    QVBoxLayout *verticalLayout;
+    QGroupBox *groupBox;
+    QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *txtIp;
     QLineEdit *edtIp;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_4;
+    QPushButton *btnAddSrv;
+    QHBoxLayout *horizontalLayout_7;
+    QPushButton *btnRemove;
+    QPushButton *btnRename;
+    QFrame *line;
+    QGroupBox *groupBox_2;
+    QGridLayout *gridLayout_3;
+    QFormLayout *formLayout;
+    QLabel *txtGta;
+    QLineEdit *edtGta;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *btnConnect;
     QToolButton *toolButton;
-    QHBoxLayout *horizontalLayout_6;
     QPushButton *btnDebug;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *btnInject;
-    QWidget *formLayoutWidget_2;
-    QFormLayout *formLayout_2;
+    QHBoxLayout *horizontalLayout_10;
+    QGridLayout *gridLayout_2;
     QLabel *txtPlayers;
     QLabel *tsPlayers;
     QLabel *txtPing;
@@ -81,23 +94,15 @@ public:
     QLabel *tsUrl;
     QLabel *txtLng;
     QLabel *tsLng;
-    QWidget *horizontalLayoutWidget_3;
-    QHBoxLayout *horizontalLayout_5;
-    QLabel *txtGroup;
-    QComboBox *cbGroup;
-    QPushButton *btnGroupAdd;
-    QPushButton *btnGroupRemove;
-    QWidget *horizontalLayoutWidget_4;
-    QHBoxLayout *horizontalLayout_7;
-    QPushButton *btnRemove;
-    QPushButton *btnRename;
-    QMenuBar *menuBar;
+    QVBoxLayout *verticalLayout_2;
+    QLabel *txtComment;
+    QTextEdit *edtComment;
 
     void setupUi(QMainWindow *SRauncher)
     {
         if (SRauncher->objectName().isEmpty())
             SRauncher->setObjectName(QStringLiteral("SRauncher"));
-        SRauncher->resize(450, 466);
+        SRauncher->resize(484, 512);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -117,233 +122,328 @@ public:
         centralWidget->setBaseSize(QSize(418, 349));
         centralWidget->setContextMenuPolicy(Qt::NoContextMenu);
         centralWidget->setLayoutDirection(Qt::LeftToRight);
-        horizontalLayoutWidget = new QWidget(centralWidget);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(9, -1, 431, 34));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        txtNick = new QLabel(horizontalLayoutWidget);
+        gridLayout_4 = new QGridLayout(centralWidget);
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setContentsMargins(11, 11, 11, 11);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        gridLayout_5 = new QGridLayout();
+        gridLayout_5->setSpacing(6);
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
+        txtNick = new QLabel(centralWidget);
         txtNick->setObjectName(QStringLiteral("txtNick"));
         txtNick->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout->addWidget(txtNick);
+        gridLayout_5->addWidget(txtNick, 0, 0, 1, 1);
 
-        edtNick = new QLineEdit(horizontalLayoutWidget);
+        edtNick = new QLineEdit(centralWidget);
         edtNick->setObjectName(QStringLiteral("edtNick"));
 
-        horizontalLayout->addWidget(edtNick);
+        gridLayout_5->addWidget(edtNick, 0, 1, 1, 1);
 
-        btnSettings = new QPushButton(horizontalLayoutWidget);
+        btnSettings = new QPushButton(centralWidget);
         btnSettings->setObjectName(QStringLiteral("btnSettings"));
         btnSettings->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout->addWidget(btnSettings);
+        gridLayout_5->addWidget(btnSettings, 0, 2, 1, 1);
 
+
+        verticalLayout_3->addLayout(gridLayout_5);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(6);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(2);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        txtGroup = new QLabel(centralWidget);
+        txtGroup->setObjectName(QStringLiteral("txtGroup"));
+        txtGroup->setMaximumSize(QSize(45, 16777215));
+        txtGroup->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        horizontalLayout_5->addWidget(txtGroup);
+
+        cbGroup = new QComboBox(centralWidget);
+        cbGroup->setObjectName(QStringLiteral("cbGroup"));
+        cbGroup->setMinimumSize(QSize(120, 0));
+        cbGroup->setMaximumSize(QSize(150, 16777215));
+
+        horizontalLayout_5->addWidget(cbGroup);
+
+        btnGroupAdd = new QPushButton(centralWidget);
+        btnGroupAdd->setObjectName(QStringLiteral("btnGroupAdd"));
+        btnGroupAdd->setMaximumSize(QSize(30, 16777215));
+        btnGroupAdd->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        horizontalLayout_5->addWidget(btnGroupAdd);
+
+        btnGroupRemove = new QPushButton(centralWidget);
+        btnGroupRemove->setObjectName(QStringLiteral("btnGroupRemove"));
+        btnGroupRemove->setMaximumSize(QSize(50, 16777215));
+        btnGroupRemove->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        horizontalLayout_5->addWidget(btnGroupRemove);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer);
+
+        btnInject = new QPushButton(centralWidget);
+        btnInject->setObjectName(QStringLiteral("btnInject"));
+        btnInject->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        horizontalLayout_5->addWidget(btnInject);
+
+
+        horizontalLayout_8->addLayout(horizontalLayout_5);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_8);
+
+
+        verticalLayout_5->addLayout(verticalLayout_3);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         srvList = new QListWidget(centralWidget);
         srvList->setObjectName(QStringLiteral("srvList"));
-        srvList->setGeometry(QRect(10, 60, 281, 191));
+        srvList->setMinimumSize(QSize(0, 250));
         srvList->setSortingEnabled(true);
-        line = new QFrame(centralWidget);
-        line->setObjectName(QStringLiteral("line"));
-        line->setGeometry(QRect(290, 110, 161, 20));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-        btnAddSrv = new QPushButton(centralWidget);
-        btnAddSrv->setObjectName(QStringLiteral("btnAddSrv"));
-        btnAddSrv->setGeometry(QRect(300, 63, 141, 23));
-        btnAddSrv->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
-        formLayoutWidget = new QWidget(centralWidget);
-        formLayoutWidget->setObjectName(QStringLiteral("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(300, 130, 141, 32));
-        formLayout = new QFormLayout(formLayoutWidget);
-        formLayout->setSpacing(6);
-        formLayout->setContentsMargins(11, 11, 11, 11);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        formLayout->setContentsMargins(0, 0, 0, 0);
-        txtGta = new QLabel(formLayoutWidget);
-        txtGta->setObjectName(QStringLiteral("txtGta"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, txtGta);
+        horizontalLayout_3->addWidget(srvList);
 
-        edtGta = new QLineEdit(formLayoutWidget);
-        edtGta->setObjectName(QStringLiteral("edtGta"));
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, edtGta);
-
-        txtComment = new QLabel(centralWidget);
-        txtComment->setObjectName(QStringLiteral("txtComment"));
-        txtComment->setGeometry(QRect(240, 250, 201, 16));
-        txtComment->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
-        edtComment = new QTextEdit(centralWidget);
-        edtComment->setObjectName(QStringLiteral("edtComment"));
-        edtComment->setGeometry(QRect(240, 270, 201, 123));
-        horizontalLayoutWidget_2 = new QWidget(centralWidget);
-        horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(300, 30, 141, 32));
-        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setMinimumSize(QSize(200, 0));
+        groupBox->setMaximumSize(QSize(200, 16777215));
+        gridLayout = new QGridLayout(groupBox);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        txtIp = new QLabel(horizontalLayoutWidget_2);
+        txtIp = new QLabel(groupBox);
         txtIp->setObjectName(QStringLiteral("txtIp"));
 
         horizontalLayout_2->addWidget(txtIp);
 
-        edtIp = new QLineEdit(horizontalLayoutWidget_2);
+        edtIp = new QLineEdit(groupBox);
         edtIp->setObjectName(QStringLiteral("edtIp"));
 
         horizontalLayout_2->addWidget(edtIp);
 
-        layoutWidget = new QWidget(centralWidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(300, 160, 141, 116));
-        verticalLayout = new QVBoxLayout(layoutWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+
+        gridLayout->addLayout(horizontalLayout_2, 0, 0, 1, 1);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        btnAddSrv = new QPushButton(groupBox);
+        btnAddSrv->setObjectName(QStringLiteral("btnAddSrv"));
+        btnAddSrv->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        verticalLayout_4->addWidget(btnAddSrv);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(2);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        btnRemove = new QPushButton(groupBox);
+        btnRemove->setObjectName(QStringLiteral("btnRemove"));
+        btnRemove->setMaximumSize(QSize(16777215, 16777215));
+        btnRemove->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        horizontalLayout_7->addWidget(btnRemove);
+
+        btnRename = new QPushButton(groupBox);
+        btnRename->setObjectName(QStringLiteral("btnRename"));
+        btnRename->setMaximumSize(QSize(16777215, 16777215));
+        btnRename->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+
+        horizontalLayout_7->addWidget(btnRename);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_7);
+
+
+        gridLayout->addLayout(verticalLayout_4, 1, 0, 1, 1);
+
+
+        verticalLayout->addWidget(groupBox);
+
+        line = new QFrame(centralWidget);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line);
+
+        groupBox_2 = new QGroupBox(centralWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setMinimumSize(QSize(200, 0));
+        groupBox_2->setMaximumSize(QSize(200, 16777215));
+        gridLayout_3 = new QGridLayout(groupBox_2);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        formLayout = new QFormLayout();
+        formLayout->setSpacing(6);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        txtGta = new QLabel(groupBox_2);
+        txtGta->setObjectName(QStringLiteral("txtGta"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, txtGta);
+
+        edtGta = new QLineEdit(groupBox_2);
+        edtGta->setObjectName(QStringLiteral("edtGta"));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, edtGta);
+
+
+        gridLayout_3->addLayout(formLayout, 0, 0, 1, 1);
+
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        btnConnect = new QPushButton(layoutWidget);
+        btnConnect = new QPushButton(groupBox_2);
         btnConnect->setObjectName(QStringLiteral("btnConnect"));
         btnConnect->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
         horizontalLayout_4->addWidget(btnConnect);
 
-        toolButton = new QToolButton(layoutWidget);
+        toolButton = new QToolButton(groupBox_2);
         toolButton->setObjectName(QStringLiteral("toolButton"));
 
         horizontalLayout_4->addWidget(toolButton);
 
 
-        verticalLayout->addLayout(horizontalLayout_4);
+        gridLayout_3->addLayout(horizontalLayout_4, 1, 0, 1, 1);
 
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setSpacing(6);
-        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        btnDebug = new QPushButton(layoutWidget);
+        btnDebug = new QPushButton(groupBox_2);
         btnDebug->setObjectName(QStringLiteral("btnDebug"));
         btnDebug->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout_6->addWidget(btnDebug);
+        gridLayout_3->addWidget(btnDebug, 2, 0, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout_6);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        btnInject = new QPushButton(layoutWidget);
-        btnInject->setObjectName(QStringLiteral("btnInject"));
-        btnInject->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
-
-        horizontalLayout_3->addWidget(btnInject);
+        verticalLayout->addWidget(groupBox_2);
 
 
-        verticalLayout->addLayout(horizontalLayout_3);
+        horizontalLayout_3->addLayout(verticalLayout);
 
-        formLayoutWidget_2 = new QWidget(centralWidget);
-        formLayoutWidget_2->setObjectName(QStringLiteral("formLayoutWidget_2"));
-        formLayoutWidget_2->setGeometry(QRect(10, 260, 221, 182));
-        formLayout_2 = new QFormLayout(formLayoutWidget_2);
-        formLayout_2->setSpacing(6);
-        formLayout_2->setContentsMargins(11, 11, 11, 11);
-        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
-        formLayout_2->setLabelAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        formLayout_2->setVerticalSpacing(4);
-        formLayout_2->setContentsMargins(0, 0, 0, 0);
-        txtPlayers = new QLabel(formLayoutWidget_2);
+
+        verticalLayout_5->addLayout(horizontalLayout_3);
+
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setVerticalSpacing(4);
+        txtPlayers = new QLabel(centralWidget);
         txtPlayers->setObjectName(QStringLiteral("txtPlayers"));
         txtPlayers->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        txtPlayers->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         txtPlayers->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
 
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, txtPlayers);
+        gridLayout_2->addWidget(txtPlayers, 0, 0, 1, 1);
 
-        tsPlayers = new QLabel(formLayoutWidget_2);
+        tsPlayers = new QLabel(centralWidget);
         tsPlayers->setObjectName(QStringLiteral("tsPlayers"));
+        tsPlayers->setMinimumSize(QSize(150, 0));
         tsPlayers->setCursor(QCursor(Qt::ArrowCursor));
         tsPlayers->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(0, QFormLayout::FieldRole, tsPlayers);
+        gridLayout_2->addWidget(tsPlayers, 0, 1, 1, 1);
 
-        txtPing = new QLabel(formLayoutWidget_2);
+        txtPing = new QLabel(centralWidget);
         txtPing->setObjectName(QStringLiteral("txtPing"));
         txtPing->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        txtPing->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(1, QFormLayout::LabelRole, txtPing);
+        gridLayout_2->addWidget(txtPing, 1, 0, 1, 1);
 
-        tsPing = new QLabel(formLayoutWidget_2);
+        tsPing = new QLabel(centralWidget);
         tsPing->setObjectName(QStringLiteral("tsPing"));
         tsPing->setCursor(QCursor(Qt::ArrowCursor));
         tsPing->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(1, QFormLayout::FieldRole, tsPing);
+        gridLayout_2->addWidget(tsPing, 1, 1, 1, 1);
 
-        txtTime = new QLabel(formLayoutWidget_2);
+        txtTime = new QLabel(centralWidget);
         txtTime->setObjectName(QStringLiteral("txtTime"));
         txtTime->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        txtTime->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(2, QFormLayout::LabelRole, txtTime);
+        gridLayout_2->addWidget(txtTime, 2, 0, 1, 1);
 
-        tsTime = new QLabel(formLayoutWidget_2);
+        tsTime = new QLabel(centralWidget);
         tsTime->setObjectName(QStringLiteral("tsTime"));
         tsTime->setCursor(QCursor(Qt::ArrowCursor));
         tsTime->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(2, QFormLayout::FieldRole, tsTime);
+        gridLayout_2->addWidget(tsTime, 2, 1, 1, 1);
 
-        txtWeather = new QLabel(formLayoutWidget_2);
+        txtWeather = new QLabel(centralWidget);
         txtWeather->setObjectName(QStringLiteral("txtWeather"));
         txtWeather->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        txtWeather->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(3, QFormLayout::LabelRole, txtWeather);
+        gridLayout_2->addWidget(txtWeather, 3, 0, 1, 1);
 
-        tsWeather = new QLabel(formLayoutWidget_2);
+        tsWeather = new QLabel(centralWidget);
         tsWeather->setObjectName(QStringLiteral("tsWeather"));
         tsWeather->setCursor(QCursor(Qt::ArrowCursor));
         tsWeather->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(3, QFormLayout::FieldRole, tsWeather);
+        gridLayout_2->addWidget(tsWeather, 3, 1, 1, 1);
 
-        txtMap = new QLabel(formLayoutWidget_2);
+        txtMap = new QLabel(centralWidget);
         txtMap->setObjectName(QStringLiteral("txtMap"));
         txtMap->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        txtMap->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(4, QFormLayout::LabelRole, txtMap);
+        gridLayout_2->addWidget(txtMap, 4, 0, 1, 1);
 
-        tsMap = new QLabel(formLayoutWidget_2);
+        tsMap = new QLabel(centralWidget);
         tsMap->setObjectName(QStringLiteral("tsMap"));
         tsMap->setCursor(QCursor(Qt::ArrowCursor));
         tsMap->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(4, QFormLayout::FieldRole, tsMap);
+        gridLayout_2->addWidget(tsMap, 4, 1, 1, 1);
 
-        txtMode = new QLabel(formLayoutWidget_2);
+        txtMode = new QLabel(centralWidget);
         txtMode->setObjectName(QStringLiteral("txtMode"));
         txtMode->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        txtMode->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(5, QFormLayout::LabelRole, txtMode);
+        gridLayout_2->addWidget(txtMode, 5, 0, 1, 1);
 
-        tsMode = new QLabel(formLayoutWidget_2);
+        tsMode = new QLabel(centralWidget);
         tsMode->setObjectName(QStringLiteral("tsMode"));
         tsMode->setCursor(QCursor(Qt::ArrowCursor));
         tsMode->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(5, QFormLayout::FieldRole, tsMode);
+        gridLayout_2->addWidget(tsMode, 5, 1, 1, 1);
 
-        txtUrl = new QLabel(formLayoutWidget_2);
+        txtUrl = new QLabel(centralWidget);
         txtUrl->setObjectName(QStringLiteral("txtUrl"));
         txtUrl->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
-        txtUrl->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        txtUrl->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(6, QFormLayout::LabelRole, txtUrl);
+        gridLayout_2->addWidget(txtUrl, 6, 0, 1, 1);
 
-        tsUrl = new QLabel(formLayoutWidget_2);
+        tsUrl = new QLabel(centralWidget);
         tsUrl->setObjectName(QStringLiteral("tsUrl"));
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
@@ -367,89 +467,51 @@ public:
         tsUrl->setOpenExternalLinks(true);
         tsUrl->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-        formLayout_2->setWidget(6, QFormLayout::FieldRole, tsUrl);
+        gridLayout_2->addWidget(tsUrl, 6, 1, 1, 1);
 
-        txtLng = new QLabel(formLayoutWidget_2);
+        txtLng = new QLabel(centralWidget);
         txtLng->setObjectName(QStringLiteral("txtLng"));
-        txtLng->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        txtLng->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        formLayout_2->setWidget(7, QFormLayout::LabelRole, txtLng);
+        gridLayout_2->addWidget(txtLng, 7, 0, 1, 1);
 
-        tsLng = new QLabel(formLayoutWidget_2);
+        tsLng = new QLabel(centralWidget);
         tsLng->setObjectName(QStringLiteral("tsLng"));
         tsLng->setCursor(QCursor(Qt::ArrowCursor));
         tsLng->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-        formLayout_2->setWidget(7, QFormLayout::FieldRole, tsLng);
+        gridLayout_2->addWidget(tsLng, 7, 1, 1, 1);
 
-        horizontalLayoutWidget_3 = new QWidget(centralWidget);
-        horizontalLayoutWidget_3->setObjectName(QStringLiteral("horizontalLayoutWidget_3"));
-        horizontalLayoutWidget_3->setGeometry(QRect(10, 30, 281, 34));
-        horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_3);
-        horizontalLayout_5->setSpacing(2);
-        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        txtGroup = new QLabel(horizontalLayoutWidget_3);
-        txtGroup->setObjectName(QStringLiteral("txtGroup"));
-        txtGroup->setMaximumSize(QSize(45, 16777215));
-        txtGroup->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout_5->addWidget(txtGroup);
+        horizontalLayout_10->addLayout(gridLayout_2);
 
-        cbGroup = new QComboBox(horizontalLayoutWidget_3);
-        cbGroup->setObjectName(QStringLiteral("cbGroup"));
-        cbGroup->setMinimumSize(QSize(120, 0));
-        cbGroup->setMaximumSize(QSize(150, 16777215));
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        txtComment = new QLabel(centralWidget);
+        txtComment->setObjectName(QStringLiteral("txtComment"));
+        txtComment->setMinimumSize(QSize(0, 20));
+        txtComment->setMaximumSize(QSize(80, 20));
+        txtComment->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout_5->addWidget(cbGroup);
+        verticalLayout_2->addWidget(txtComment);
 
-        btnGroupAdd = new QPushButton(horizontalLayoutWidget_3);
-        btnGroupAdd->setObjectName(QStringLiteral("btnGroupAdd"));
-        btnGroupAdd->setMaximumSize(QSize(30, 16777215));
-        btnGroupAdd->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        edtComment = new QTextEdit(centralWidget);
+        edtComment->setObjectName(QStringLiteral("edtComment"));
+        edtComment->setMaximumSize(QSize(16777215, 99999));
 
-        horizontalLayout_5->addWidget(btnGroupAdd);
+        verticalLayout_2->addWidget(edtComment);
 
-        btnGroupRemove = new QPushButton(horizontalLayoutWidget_3);
-        btnGroupRemove->setObjectName(QStringLiteral("btnGroupRemove"));
-        btnGroupRemove->setMaximumSize(QSize(50, 16777215));
-        btnGroupRemove->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout_5->addWidget(btnGroupRemove);
+        horizontalLayout_10->addLayout(verticalLayout_2);
 
-        horizontalLayoutWidget_4 = new QWidget(centralWidget);
-        horizontalLayoutWidget_4->setObjectName(QStringLiteral("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(300, 90, 141, 34));
-        horizontalLayout_7 = new QHBoxLayout(horizontalLayoutWidget_4);
-        horizontalLayout_7->setSpacing(2);
-        horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        btnRemove = new QPushButton(horizontalLayoutWidget_4);
-        btnRemove->setObjectName(QStringLiteral("btnRemove"));
-        btnRemove->setMaximumSize(QSize(50, 16777215));
-        btnRemove->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout_7->addWidget(btnRemove);
+        verticalLayout_5->addLayout(horizontalLayout_10);
 
-        btnRename = new QPushButton(horizontalLayoutWidget_4);
-        btnRename->setObjectName(QStringLiteral("btnRename"));
-        btnRename->setMaximumSize(QSize(90, 16777215));
-        btnRename->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-        horizontalLayout_7->addWidget(btnRename);
+        gridLayout_4->addLayout(verticalLayout_5, 0, 0, 1, 1);
 
         SRauncher->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(SRauncher);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 450, 28));
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(menuBar->sizePolicy().hasHeightForWidth());
-        menuBar->setSizePolicy(sizePolicy1);
-        SRauncher->setMenuBar(menuBar);
 
         retranslateUi(SRauncher);
         QObject::connect(srvList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), btnConnect, SLOT(click()));
@@ -462,16 +524,22 @@ public:
         SRauncher->setWindowTitle(QApplication::translate("SRauncher", "SRauncher", nullptr));
         txtNick->setText(QApplication::translate("SRauncher", "Nick:", nullptr));
         btnSettings->setText(QApplication::translate("SRauncher", "Settings", nullptr));
-        btnAddSrv->setText(QApplication::translate("SRauncher", "Add/move server", nullptr));
-        txtGta->setText(QApplication::translate("SRauncher", "gta_sa:", nullptr));
-        edtGta->setText(QApplication::translate("SRauncher", "gta_sa.exe", nullptr));
-        txtComment->setText(QApplication::translate("SRauncher", "Comment:", nullptr));
+        txtGroup->setText(QApplication::translate("SRauncher", "Group:", nullptr));
+        btnGroupAdd->setText(QApplication::translate("SRauncher", "Add", nullptr));
+        btnGroupRemove->setText(QApplication::translate("SRauncher", "remove", nullptr));
+        btnInject->setText(QApplication::translate("SRauncher", "Additional inject", nullptr));
+        groupBox->setTitle(QApplication::translate("SRauncher", "Server", nullptr));
         txtIp->setText(QApplication::translate("SRauncher", "IP:", nullptr));
         edtIp->setText(QApplication::translate("SRauncher", "127.0.0.1:7777", nullptr));
+        btnAddSrv->setText(QApplication::translate("SRauncher", "Add/move server", nullptr));
+        btnRemove->setText(QApplication::translate("SRauncher", "remove", nullptr));
+        btnRename->setText(QApplication::translate("SRauncher", "rename", nullptr));
+        groupBox_2->setTitle(QApplication::translate("SRauncher", "Run", nullptr));
+        txtGta->setText(QApplication::translate("SRauncher", "gta_sa:", nullptr));
+        edtGta->setText(QApplication::translate("SRauncher", "gta_sa.exe", nullptr));
         btnConnect->setText(QApplication::translate("SRauncher", "Connect", nullptr));
-        toolButton->setText(QApplication::translate("SRauncher", "...", nullptr));
+        toolButton->setText(QApplication::translate("SRauncher", "Password", nullptr));
         btnDebug->setText(QApplication::translate("SRauncher", "Debug mode", nullptr));
-        btnInject->setText(QApplication::translate("SRauncher", "Additional inject", nullptr));
         txtPlayers->setText(QApplication::translate("SRauncher", "Players: ", nullptr));
         tsPlayers->setText(QString());
         txtPing->setText(QApplication::translate("SRauncher", "Ping: ", nullptr));
@@ -488,11 +556,7 @@ public:
         tsUrl->setText(QString());
         txtLng->setText(QApplication::translate("SRauncher", "Language:", nullptr));
         tsLng->setText(QString());
-        txtGroup->setText(QApplication::translate("SRauncher", "Group:", nullptr));
-        btnGroupAdd->setText(QApplication::translate("SRauncher", "Add", nullptr));
-        btnGroupRemove->setText(QApplication::translate("SRauncher", "remove", nullptr));
-        btnRemove->setText(QApplication::translate("SRauncher", "remove", nullptr));
-        btnRename->setText(QApplication::translate("SRauncher", "rename", nullptr));
+        txtComment->setText(QApplication::translate("SRauncher", "Comment:", nullptr));
     } // retranslateUi
 
 };
